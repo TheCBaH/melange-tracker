@@ -1,0 +1,32 @@
+{
+  "author": "Gwansik Kim",
+  "auto_category": "candidate",
+  "date": "2025-04-16 13:27:08 -0400",
+  "discovered_at": "2026-03-26T14:34:33.673894",
+  "files_changed": [
+    "CHANGELOG.md",
+    "compiler/ml/unified_ops.ml",
+    "compiler/syntax/src/res_parsetree_viewer.ml",
+    "compiler/syntax/src/res_scanner.ml",
+    "compiler/syntax/src/res_token.ml",
+    "runtime/Pervasives.res",
+    "tests/syntax_tests/data/parsing/errors/typexpr/expected/typeConstructorArgs.res.txt",
+    "tests/syntax_tests/data/parsing/grammar/expressions/binary.res",
+    "tests/syntax_tests/data/parsing/grammar/expressions/expected/binary.res.txt",
+    "tests/syntax_tests/data/printer/expr/binary.res",
+    "tests/syntax_tests/data/printer/expr/expected/binary.res.txt",
+    "tests/tests/src/belt_int_test.mjs",
+    "tests/tests/src/belt_int_test.res",
+    "tests/tests/src/unified_ops_test.mjs",
+    "tests/tests/src/unified_ops_test.res"
+  ],
+  "hash": "220b3d0ec",
+  "melange_branch": "",
+  "notes": [],
+  "plan": "",
+  "pr_url": "",
+  "reason": "",
+  "status": "discovered",
+  "subject": "Add shift operators (`<<`, `>>`, `>>>`) (#7183)",
+  "updated_at": "2026-03-26T14:34:33.673968"
+}

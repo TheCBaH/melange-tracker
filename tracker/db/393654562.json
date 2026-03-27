@@ -1,0 +1,18 @@
+{
+  "author": "Cristiano Calcagno",
+  "auto_category": "candidate",
+  "date": "2024-11-08 13:42:08 +0100",
+  "discovered_at": "2026-03-26T14:34:44.977139",
+  "files_changed": [
+    "compiler/core/js_exp_make.ml"
+  ],
+  "hash": "393654562",
+  "melange_branch": "",
+  "notes": [],
+  "plan": "",
+  "pr_url": "",
+  "reason": "",
+  "status": "discovered",
+  "subject": "Squeeze in side effects check",
+  "updated_at": "2026-03-26T14:34:44.977175"
+}

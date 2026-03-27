@@ -1,0 +1,21 @@
+{
+  "author": "Cristiano Calcagno",
+  "auto_category": "high_priority",
+  "date": "2025-07-14 11:20:42 +0200",
+  "discovered_at": "2026-03-26T14:34:22.798797",
+  "files_changed": [
+    "CHANGELOG.md",
+    "compiler/core/js_dump.ml",
+    "tests/tests/src/core/Test.mjs",
+    "tests/tests/src/core/Test.res"
+  ],
+  "hash": "4e705371a",
+  "melange_branch": "",
+  "notes": [],
+  "plan": "",
+  "pr_url": "",
+  "reason": "",
+  "status": "discovered",
+  "subject": "Fix issue with invalid code when emitting typeof with a function.",
+  "updated_at": "2026-03-26T14:34:22.798835"
+}

@@ -1,0 +1,23 @@
+{
+  "author": "Christoph Knittel",
+  "auto_category": "high_priority",
+  "date": "2025-12-21 12:00:19 +0100",
+  "discovered_at": "2026-03-26T14:34:07.823152",
+  "files_changed": [
+    "CHANGELOG.md",
+    "compiler/core/js_pass_external_shadow.ml",
+    "compiler/core/js_pass_external_shadow.mli",
+    "compiler/core/lam_compile_main.ml",
+    "tests/tests/src/ExternalShadow.mjs",
+    "tests/tests/src/ExternalShadow.res"
+  ],
+  "hash": "6fd5e2a4b",
+  "melange_branch": "",
+  "notes": [],
+  "plan": "",
+  "pr_url": "",
+  "reason": "",
+  "status": "discovered",
+  "subject": "Fix `@val` shadowing (rewrite using globalThis) (#8098)",
+  "updated_at": "2026-03-26T14:34:07.823242"
+}

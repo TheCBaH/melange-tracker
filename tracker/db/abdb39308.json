@@ -1,0 +1,22 @@
+{
+  "author": "Christoph Knittel",
+  "auto_category": "candidate",
+  "date": "2025-07-11 19:27:36 +0200",
+  "discovered_at": "2026-03-26T14:34:23.493800",
+  "files_changed": [
+    "CHANGELOG.md",
+    "compiler/bsc/rescript_compiler_main.ml",
+    "compiler/core/bs_conditional_initial.ml",
+    "compiler/ml/rescript_cpp.ml",
+    "compiler/ml/rescript_cpp.mli"
+  ],
+  "hash": "abdb39308",
+  "melange_branch": "",
+  "notes": [],
+  "plan": "",
+  "pr_url": "",
+  "reason": "",
+  "status": "discovered",
+  "subject": "Remove Rescript_cpp module, -bs-D and -bs-list-conditionals (#7631)",
+  "updated_at": "2026-03-26T14:34:23.494075"
+}

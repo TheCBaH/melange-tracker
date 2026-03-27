@@ -1,0 +1,19 @@
+{
+  "author": "Cristiano Calcagno",
+  "auto_category": "candidate",
+  "date": "2024-11-02 09:50:07 +0100",
+  "discovered_at": "2026-03-26T14:34:46.660714",
+  "files_changed": [
+    "compiler/ml/ast_untagged_variants.ml",
+    "compiler/ml/parmatch.ml"
+  ],
+  "hash": "bcaccfc4e",
+  "melange_branch": "",
+  "notes": [],
+  "plan": "",
+  "pr_url": "",
+  "reason": "",
+  "status": "discovered",
+  "subject": "refactor: more logic in ast_untagged_variants",
+  "updated_at": "2026-03-26T14:34:46.660753"
+}

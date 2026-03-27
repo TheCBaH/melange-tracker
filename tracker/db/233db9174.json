@@ -1,0 +1,22 @@
+{
+  "author": "Cristiano Calcagno",
+  "auto_category": "candidate",
+  "date": "2024-12-10 18:56:17 +0100",
+  "discovered_at": "2026-03-26T14:34:42.313571",
+  "files_changed": [
+    "compiler/ml/tast_mapper.ml",
+    "compiler/ml/translcore.ml",
+    "compiler/ml/typecore.ml",
+    "compiler/ml/typedtree.ml",
+    "compiler/ml/typedtree.mli"
+  ],
+  "hash": "233db9174",
+  "melange_branch": "",
+  "notes": [],
+  "plan": "",
+  "pr_url": "",
+  "reason": "",
+  "status": "discovered",
+  "subject": "Extend Texp_function with arity information.",
+  "updated_at": "2026-03-26T14:34:42.313604"
+}

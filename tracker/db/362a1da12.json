@@ -1,0 +1,22 @@
+{
+  "author": "Florian Verdonck",
+  "auto_category": "candidate",
+  "date": "2025-05-05 20:30:40 +0200",
+  "discovered_at": "2026-03-26T14:34:31.275691",
+  "files_changed": [
+    "compiler/core/js_dump.ml",
+    "compiler/core/js_dump_property.ml",
+    "compiler/core/js_dump_property.mli",
+    "tests/tests/src/preserve_jsx_test.mjs",
+    "tests/tests/src/preserve_jsx_test.res"
+  ],
+  "hash": "362a1da12",
+  "melange_branch": "",
+  "notes": [],
+  "plan": "",
+  "pr_url": "",
+  "reason": "",
+  "status": "discovered",
+  "subject": "Escape prop name in preserve jsx (#7429)",
+  "updated_at": "2026-03-26T14:34:31.275803"
+}

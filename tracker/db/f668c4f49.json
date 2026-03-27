@@ -1,0 +1,18 @@
+{
+  "author": "Cristiano Calcagno",
+  "auto_category": "candidate",
+  "date": "2024-11-08 13:58:25 +0100",
+  "discovered_at": "2026-03-26T14:34:44.876784",
+  "files_changed": [
+    "compiler/core/js_exp_make.ml"
+  ],
+  "hash": "f668c4f49",
+  "melange_branch": "",
+  "notes": [],
+  "plan": "",
+  "pr_url": "",
+  "reason": "",
+  "status": "discovered",
+  "subject": "comment",
+  "updated_at": "2026-03-26T14:34:44.876816"
+}

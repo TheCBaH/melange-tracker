@@ -1,0 +1,20 @@
+{
+  "author": "Cristiano Calcagno",
+  "auto_category": "candidate",
+  "date": "2024-12-15 16:36:34 +0100",
+  "discovered_at": "2026-03-26T14:34:41.840198",
+  "files_changed": [
+    "compiler/ml/ast_mapper_from0.ml",
+    "compiler/ml/ast_mapper_to0.ml",
+    "tests/tools_tests/src/expected/TestPpx.res.jsout"
+  ],
+  "hash": "22e614776",
+  "melange_branch": "",
+  "notes": [],
+  "plan": "",
+  "pr_url": "",
+  "reason": "",
+  "status": "discovered",
+  "subject": "Adapt ppx ast conversion that was still missing.",
+  "updated_at": "2026-03-26T14:34:41.840224"
+}

@@ -1,0 +1,31 @@
+{
+  "author": "Cristiano Calcagno",
+  "auto_category": "candidate",
+  "date": "2025-01-10 13:52:41 +0100",
+  "discovered_at": "2026-03-26T14:34:40.565134",
+  "files_changed": [
+    "analysis/reanalyze/src/Arnold.ml",
+    "analysis/reanalyze/src/DeadValue.ml",
+    "analysis/reanalyze/src/Exception.ml",
+    "analysis/reanalyze/src/SideEffects.ml",
+    "compiler/gentype/TranslateStructure.ml",
+    "compiler/ml/printtyped.ml",
+    "compiler/ml/rec_check.ml",
+    "compiler/ml/tast_iterator.ml",
+    "compiler/ml/tast_mapper.ml",
+    "compiler/ml/translcore.ml",
+    "compiler/ml/typecore.ml",
+    "compiler/ml/typedtree.ml",
+    "compiler/ml/typedtree.mli",
+    "compiler/ml/typedtreeIter.ml"
+  ],
+  "hash": "b0b5fb751",
+  "melange_branch": "",
+  "notes": [],
+  "plan": "",
+  "pr_url": "",
+  "reason": "",
+  "status": "discovered",
+  "subject": "Use inline record for Texp_apply.",
+  "updated_at": "2026-03-26T14:34:40.565161"
+}

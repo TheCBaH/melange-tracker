@@ -1,0 +1,19 @@
+{
+  "author": "Cristiano Calcagno",
+  "auto_category": "candidate",
+  "date": "2024-10-31 10:22:29 +0100",
+  "discovered_at": "2026-03-26T14:34:48.145875",
+  "files_changed": [
+    "compiler/core/js_exp_make.ml",
+    "tests/tests/src/and_or_simplify.mjs"
+  ],
+  "hash": "4a1aaee73",
+  "melange_branch": "",
+  "notes": [],
+  "plan": "",
+  "pr_url": "",
+  "reason": "",
+  "status": "discovered",
+  "subject": "Better logic to simplify negation.",
+  "updated_at": "2026-03-26T14:34:48.145918"
+}

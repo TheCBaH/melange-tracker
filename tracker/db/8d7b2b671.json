@@ -1,0 +1,20 @@
+{
+  "author": "Cristiano Calcagno",
+  "auto_category": "candidate",
+  "date": "2024-10-31 13:17:43 +0100",
+  "discovered_at": "2026-03-26T14:34:47.382691",
+  "files_changed": [
+    "compiler/core/js_exp_make.ml",
+    "tests/tests/src/and_or_simplify.res",
+    "tests/tests/src/option_repr_test.mjs"
+  ],
+  "hash": "8d7b2b671",
+  "melange_branch": "",
+  "notes": [],
+  "plan": "",
+  "pr_url": "",
+  "reason": "",
+  "status": "discovered",
+  "subject": "More interesting example.",
+  "updated_at": "2026-03-26T14:34:47.382741"
+}

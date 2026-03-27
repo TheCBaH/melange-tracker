@@ -1,0 +1,26 @@
+{
+  "author": "Cristiano Calcagno",
+  "auto_category": "candidate",
+  "date": "2024-12-24 08:33:58 +0100",
+  "discovered_at": "2026-03-26T14:34:41.077848",
+  "files_changed": [
+    "compiler/frontend/ast_attributes.ml",
+    "compiler/frontend/ast_attributes.mli",
+    "compiler/frontend/bs_builtin_ppx.ml",
+    "compiler/ml/ast_async.ml",
+    "compiler/ml/translcore.ml",
+    "compiler/syntax/src/res_core.ml",
+    "compiler/syntax/src/res_parsetree_viewer.ml",
+    "compiler/syntax/src/res_parsetree_viewer.mli",
+    "compiler/syntax/src/res_printer.ml"
+  ],
+  "hash": "2c322b65e",
+  "melange_branch": "",
+  "notes": [],
+  "plan": "",
+  "pr_url": "",
+  "reason": "",
+  "status": "discovered",
+  "subject": "AST: clean up async.",
+  "updated_at": "2026-03-26T14:34:41.077874"
+}

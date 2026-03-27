@@ -1,0 +1,21 @@
+{
+  "author": "Cristiano Calcagno",
+  "auto_category": "candidate",
+  "date": "2024-12-04 08:58:54 +0100",
+  "discovered_at": "2026-03-26T14:34:43.385886",
+  "files_changed": [
+    "CHANGELOG.md",
+    "compiler/ml/parmatch.ml",
+    "compiler/ml/parmatch.mli",
+    "compiler/ml/typecore.ml"
+  ],
+  "hash": "74e55eaa3",
+  "melange_branch": "",
+  "notes": [],
+  "plan": "",
+  "pr_url": "",
+  "reason": "",
+  "status": "discovered",
+  "subject": "small cleanup",
+  "updated_at": "2026-03-26T14:34:43.385917"
+}

@@ -1,0 +1,29 @@
+{
+  "author": "Christoph Knittel",
+  "auto_category": "candidate",
+  "date": "2025-11-25 13:11:05 +0100",
+  "discovered_at": "2026-03-26T14:34:09.105885",
+  "files_changed": [
+    "CHANGELOG.md",
+    "compiler/common/bs_version.ml",
+    "package.json",
+    "packages/@rescript/darwin-arm64/package.json",
+    "packages/@rescript/darwin-x64/package.json",
+    "packages/@rescript/linux-arm64/package.json",
+    "packages/@rescript/linux-x64/package.json",
+    "packages/@rescript/runtime/package.json",
+    "packages/@rescript/win32-x64/package.json",
+    "rewatch/Cargo.lock",
+    "rewatch/Cargo.toml",
+    "yarn.config.cjs"
+  ],
+  "hash": "0e4bbcc67",
+  "melange_branch": "",
+  "notes": [],
+  "plan": "",
+  "pr_url": "",
+  "reason": "",
+  "status": "discovered",
+  "subject": "Release 12.0.0 (#8028)",
+  "updated_at": "2026-03-26T14:34:09.105964"
+}

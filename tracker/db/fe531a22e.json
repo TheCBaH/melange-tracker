@@ -1,0 +1,20 @@
+{
+  "author": "M\u00e9di-R\u00e9mi Hashim",
+  "auto_category": "candidate",
+  "date": "2025-08-23 21:43:56 +0100",
+  "discovered_at": "2026-03-26T14:34:17.467837",
+  "files_changed": [
+    "compiler/ml/ast_untagged_variants.ml",
+    "tests/tests/src/UntaggedVariants.mjs",
+    "tests/tests/src/UntaggedVariants.res"
+  ],
+  "hash": "fe531a22e",
+  "melange_branch": "",
+  "notes": [],
+  "plan": "",
+  "pr_url": "",
+  "reason": "",
+  "status": "discovered",
+  "subject": "Add support for ArrayBuffer and typed arrays to @unboxed (#7788)",
+  "updated_at": "2026-03-26T14:34:17.467891"
+}

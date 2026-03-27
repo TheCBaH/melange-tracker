@@ -1,0 +1,22 @@
+{
+  "author": "Christoph Knittel",
+  "auto_category": "high_priority",
+  "date": "2025-10-17 12:21:08 +0200",
+  "discovered_at": "2026-03-26T14:34:10.548962",
+  "files_changed": [
+    "CHANGELOG.md",
+    "compiler/ml/typecore.ml",
+    "compiler/syntax/src/res_token.ml",
+    "tests/build_tests/super_errors/expected/bitnot_type_mismatch.res.expected",
+    "tests/build_tests/super_errors/fixtures/bitnot_type_mismatch.res"
+  ],
+  "hash": "973351a3d",
+  "melange_branch": "",
+  "notes": [],
+  "plan": "",
+  "pr_url": "",
+  "reason": "",
+  "status": "discovered",
+  "subject": "Fix crash when using bitwise not on incompatible type (#7965)",
+  "updated_at": "2026-03-26T14:34:10.549017"
+}

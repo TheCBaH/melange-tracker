@@ -1,0 +1,30 @@
+{
+  "author": "Christoph Knittel",
+  "auto_category": "irrelevant",
+  "date": "2026-01-13 14:58:55 +0100",
+  "discovered_at": "2026-03-26T14:34:07.055976",
+  "files_changed": [
+    "CHANGELOG.md",
+    "compiler/common/bs_version.ml",
+    "package.json",
+    "packages/@rescript/darwin-arm64/package.json",
+    "packages/@rescript/darwin-x64/package.json",
+    "packages/@rescript/linux-arm64/package.json",
+    "packages/@rescript/linux-x64/package.json",
+    "packages/@rescript/runtime/package.json",
+    "packages/@rescript/win32-x64/package.json",
+    "rewatch/Cargo.lock",
+    "rewatch/Cargo.toml",
+    "tests/dependencies/rescript-react/package.json",
+    "yarn.config.cjs"
+  ],
+  "hash": "8ab224603",
+  "melange_branch": "",
+  "notes": [],
+  "plan": "",
+  "pr_url": "",
+  "reason": "Auto-classified as irrelevant by scanner",
+  "status": "irrelevant",
+  "subject": "Set version to 13.0.0-alpha.1 (#8171)",
+  "updated_at": "2026-03-26T14:34:07.056024"
+}

@@ -1,0 +1,23 @@
+{
+  "author": "Gabriel Nordeborn",
+  "auto_category": "candidate",
+  "date": "2025-06-28 19:34:18 +0200",
+  "discovered_at": "2026-03-26T14:34:25.206606",
+  "files_changed": [
+    "CHANGELOG.md",
+    "compiler/ml/printtyp.ml",
+    "tests/build_tests/super_errors/expected/object_field_mismatch.res.expected",
+    "tests/build_tests/super_errors/expected/object_field_missing.res.expected",
+    "tests/build_tests/super_errors/fixtures/object_field_mismatch.res",
+    "tests/build_tests/super_errors/fixtures/object_field_missing.res"
+  ],
+  "hash": "78415d596",
+  "melange_branch": "",
+  "notes": [],
+  "plan": "",
+  "pr_url": "",
+  "reason": "",
+  "status": "discovered",
+  "subject": "Brush up a few object related error messages (#7580)",
+  "updated_at": "2026-03-26T14:34:25.206680"
+}

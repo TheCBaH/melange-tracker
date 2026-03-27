@@ -1,0 +1,27 @@
+{
+  "author": "Florian Verdonck",
+  "auto_category": "candidate",
+  "date": "2025-04-26 20:03:30 +0200",
+  "discovered_at": "2026-03-26T14:34:33.475852",
+  "files_changed": [
+    "CHANGELOG.md",
+    "compiler/frontend/bs_ast_mapper.ml",
+    "compiler/frontend/bs_builtin_ppx.ml",
+    "compiler/ml/ast_helper.ml",
+    "compiler/ml/ast_helper.mli",
+    "compiler/ml/ast_mapper.ml",
+    "compiler/ml/ast_mapper_from0.ml",
+    "compiler/ml/parsetree.ml",
+    "compiler/ml/printast.ml",
+    "compiler/syntax/src/res_core.ml"
+  ],
+  "hash": "c610a12bc",
+  "melange_branch": "",
+  "notes": [],
+  "plan": "",
+  "pr_url": "",
+  "reason": "",
+  "status": "discovered",
+  "subject": "Add bar position to case (#7407)",
+  "updated_at": "2026-03-26T14:34:33.475927"
+}

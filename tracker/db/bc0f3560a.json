@@ -1,0 +1,21 @@
+{
+  "author": "Christoph Knittel",
+  "auto_category": "candidate",
+  "date": "2025-07-12 08:06:43 +0200",
+  "discovered_at": "2026-03-26T14:34:22.966209",
+  "files_changed": [
+    "CHANGELOG.md",
+    "analysis/src/Shared.ml",
+    "compiler/ext/config.ml",
+    "compiler/ext/config.mli"
+  ],
+  "hash": "bc0f3560a",
+  "melange_branch": "",
+  "notes": [],
+  "plan": "",
+  "pr_url": "",
+  "reason": "",
+  "status": "discovered",
+  "subject": "Clean up config.ml (#7636)",
+  "updated_at": "2026-03-26T14:34:22.966288"
+}

@@ -1,0 +1,21 @@
+{
+  "author": "Cristiano Calcagno",
+  "auto_category": "candidate",
+  "date": "2024-12-03 09:01:25 +0100",
+  "discovered_at": "2026-03-26T14:34:43.736148",
+  "files_changed": [
+    "compiler/bsc/rescript_compiler_main.ml",
+    "compiler/common/js_config.ml",
+    "compiler/common/js_config.mli",
+    "compiler/frontend/ppx_apply.ml"
+  ],
+  "hash": "a363dd838",
+  "melange_branch": "",
+  "notes": [],
+  "plan": "",
+  "pr_url": "",
+  "reason": "",
+  "status": "discovered",
+  "subject": "Remove unused `-as-ppx` which exposes the internal AST.",
+  "updated_at": "2026-03-26T14:34:43.736178"
+}

@@ -1,0 +1,25 @@
+{
+  "author": "Cristiano Calcagno",
+  "auto_category": "high_priority",
+  "date": "2025-05-08 10:50:40 +0200",
+  "discovered_at": "2026-03-26T14:34:30.402715",
+  "files_changed": [
+    "CHANGELOG.md",
+    "compiler/ml/ast_untagged_variants.ml",
+    "tests/build_tests/super_errors/expected/multiple_tag_1.res.expected",
+    "tests/build_tests/super_errors/expected/multiple_tag_2.res.expected",
+    "tests/build_tests/super_errors/fixtures/multiple_tag_1.res",
+    "tests/build_tests/super_errors/fixtures/multiple_tag_2.res",
+    "tests/tests/src/multiple_tags.mjs",
+    "tests/tests/src/multiple_tags.res"
+  ],
+  "hash": "a87e656c6",
+  "melange_branch": "",
+  "notes": [],
+  "plan": "",
+  "pr_url": "",
+  "reason": "",
+  "status": "discovered",
+  "subject": "Fix missing checks for duplicate literals in variants with payloads.",
+  "updated_at": "2026-03-26T14:34:30.402798"
+}

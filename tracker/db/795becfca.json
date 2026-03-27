@@ -1,0 +1,19 @@
+{
+  "author": "Cristiano Calcagno",
+  "auto_category": "candidate",
+  "date": "2024-10-31 08:44:34 +0100",
+  "discovered_at": "2026-03-26T14:34:48.255900",
+  "files_changed": [
+    "CHANGELOG.md",
+    "compiler/core/js_exp_make.ml"
+  ],
+  "hash": "795becfca",
+  "melange_branch": "",
+  "notes": [],
+  "plan": "",
+  "pr_url": "",
+  "reason": "",
+  "status": "discovered",
+  "subject": "Doc comments and changelog.",
+  "updated_at": "2026-03-26T14:34:48.255943"
+}

@@ -1,0 +1,22 @@
+{
+  "author": "Gabriel Nordeborn",
+  "auto_category": "candidate",
+  "date": "2025-05-21 18:46:06 +0200",
+  "discovered_at": "2026-03-26T14:34:28.272120",
+  "files_changed": [
+    "CHANGELOG.md",
+    "compiler/ml/error_message_utils.ml",
+    "compiler/ml/typecore.ml",
+    "tests/build_tests/super_errors/expected/promise_needs_await.res.expected",
+    "tests/build_tests/super_errors/fixtures/promise_needs_await.res"
+  ],
+  "hash": "af43e111e",
+  "melange_branch": "",
+  "notes": [],
+  "plan": "",
+  "pr_url": "",
+  "reason": "",
+  "status": "discovered",
+  "subject": "Suggest awaiting promise before using it when type mismatches (#7498)",
+  "updated_at": "2026-03-26T14:34:28.272189"
+}

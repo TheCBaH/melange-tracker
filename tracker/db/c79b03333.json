@@ -1,0 +1,21 @@
+{
+  "author": "Gabriel Nordeborn",
+  "auto_category": "candidate",
+  "date": "2025-07-25 20:47:11 +0200",
+  "discovered_at": "2026-03-26T14:34:19.759884",
+  "files_changed": [
+    "CHANGELOG.md",
+    "compiler/ml/error_message_utils.ml",
+    "tests/build_tests/super_errors/expected/jsx_maybe_missing_fragment.res.expected",
+    "tests/build_tests/super_errors/fixtures/jsx_maybe_missing_fragment.res"
+  ],
+  "hash": "c79b03333",
+  "melange_branch": "",
+  "notes": [],
+  "plan": "",
+  "pr_url": "",
+  "reason": "",
+  "status": "discovered",
+  "subject": "Suggest using JSX fragment where appropriate (#7714)",
+  "updated_at": "2026-03-26T14:34:19.759940"
+}

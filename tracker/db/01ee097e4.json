@@ -1,0 +1,24 @@
+{
+  "author": "Gabriel Nordeborn",
+  "auto_category": "candidate",
+  "date": "2025-05-23 13:46:23 +0200",
+  "discovered_at": "2026-03-26T14:34:27.654501",
+  "files_changed": [
+    "CHANGELOG.md",
+    "compiler/ml/error_message_utils.ml",
+    "compiler/ml/typecore.ml",
+    "tests/build_tests/super_errors/expected/subtype_record.res.expected",
+    "tests/build_tests/super_errors/expected/subtype_string.res.expected",
+    "tests/build_tests/super_errors/fixtures/subtype_record.res",
+    "tests/build_tests/super_errors/fixtures/subtype_string.res"
+  ],
+  "hash": "01ee097e4",
+  "melange_branch": "",
+  "notes": [],
+  "plan": "",
+  "pr_url": "",
+  "reason": "",
+  "status": "discovered",
+  "subject": "Hint about coercion in error msg (#7505)",
+  "updated_at": "2026-03-26T14:34:27.654550"
+}

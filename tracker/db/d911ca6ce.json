@@ -1,0 +1,26 @@
+{
+  "author": "Florian Hammerschmidt",
+  "auto_category": "candidate",
+  "date": "2025-09-03 10:57:11 +0200",
+  "discovered_at": "2026-03-26T14:34:14.702982",
+  "files_changed": [
+    "compiler/bsb/bsb_exception.ml",
+    "compiler/core/js_packages_info.ml",
+    "compiler/depends/bs_exception.ml",
+    "compiler/ext/warnings.ml",
+    "compiler/frontend/bs_ast_invariant.ml",
+    "compiler/ml/typemod.ml",
+    "compiler/syntax/src/jsx_v4.ml",
+    "tests/build_tests/super_errors/expected/gadt_rec_missing.res.expected",
+    "tests/build_tests/super_errors/expected/react_component_with_props.res.expected"
+  ],
+  "hash": "d911ca6ce",
+  "melange_branch": "",
+  "notes": [],
+  "plan": "",
+  "pr_url": "",
+  "reason": "",
+  "status": "discovered",
+  "subject": "Error messages cleanup: Don't please the user (#7833)",
+  "updated_at": "2026-03-26T14:34:14.703019"
+}

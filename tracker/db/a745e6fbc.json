@@ -1,0 +1,20 @@
+{
+  "author": "Florian Verdonck",
+  "auto_category": "candidate",
+  "date": "2025-05-08 10:38:41 +0200",
+  "discovered_at": "2026-03-26T14:34:30.634223",
+  "files_changed": [
+    "compiler/core/js_dump.ml",
+    "tests/tests/src/preserve_jsx_test.mjs",
+    "tests/tests/src/preserve_jsx_test.res"
+  ],
+  "hash": "a745e6fbc",
+  "melange_branch": "",
+  "notes": [],
+  "plan": "",
+  "pr_url": "",
+  "reason": "",
+  "status": "discovered",
+  "subject": "Improve jsx preserve output (#7439)",
+  "updated_at": "2026-03-26T14:34:30.634392"
+}

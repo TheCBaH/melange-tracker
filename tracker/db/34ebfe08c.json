@@ -1,0 +1,21 @@
+{
+  "author": "Cristiano Calcagno",
+  "auto_category": "high_priority",
+  "date": "2025-06-13 13:36:40 +0200",
+  "discovered_at": "2026-03-26T14:34:26.556374",
+  "files_changed": [
+    "CHANGELOG.md",
+    "compiler/ml/typecore.ml",
+    "tests/tests/src/PartialApplicationNoRuntimeCurry.mjs",
+    "tests/tests/src/PartialApplicationNoRuntimeCurry.res"
+  ],
+  "hash": "34ebfe08c",
+  "melange_branch": "",
+  "notes": [],
+  "plan": "",
+  "pr_url": "",
+  "reason": "",
+  "status": "discovered",
+  "subject": "Fix issue with partial application and user defined types.",
+  "updated_at": "2026-03-26T14:34:26.556453"
+}

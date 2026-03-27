@@ -1,0 +1,18 @@
+{
+  "author": "Cristiano Calcagno",
+  "auto_category": "candidate",
+  "date": "2024-11-10 09:38:24 +0100",
+  "discovered_at": "2026-03-26T14:34:44.624699",
+  "files_changed": [
+    "compiler/core/js_exp_make.ml"
+  ],
+  "hash": "2e84c848a",
+  "melange_branch": "",
+  "notes": [],
+  "plan": "",
+  "pr_url": "",
+  "reason": "",
+  "status": "discovered",
+  "subject": "More side effect cases.",
+  "updated_at": "2026-03-26T14:34:44.624725"
+}

@@ -1,0 +1,28 @@
+{
+  "author": "Hyeseong Kim",
+  "auto_category": "candidate",
+  "date": "2025-05-03 22:56:14 +0900",
+  "discovered_at": "2026-03-26T14:34:32.726765",
+  "files_changed": [
+    "CHANGELOG.md",
+    "compiler/ml/unified_ops.ml",
+    "compiler/syntax/src/res_parsetree_viewer.ml",
+    "compiler/syntax/src/res_token.ml",
+    "runtime/Pervasives.res",
+    "tests/syntax_tests/data/parsing/grammar/expressions/binary.res",
+    "tests/syntax_tests/data/parsing/grammar/expressions/expected/binary.res.txt",
+    "tests/syntax_tests/data/printer/expr/binary.res",
+    "tests/syntax_tests/data/printer/expr/expected/binary.res.txt",
+    "tests/tests/src/unified_ops_test.mjs",
+    "tests/tests/src/unified_ops_test.res"
+  ],
+  "hash": "6303dc584",
+  "melange_branch": "",
+  "notes": [],
+  "plan": "",
+  "pr_url": "",
+  "reason": "",
+  "status": "discovered",
+  "subject": "add bitwise AND (`&`) operator (#7415)",
+  "updated_at": "2026-03-26T14:34:32.726851"
+}

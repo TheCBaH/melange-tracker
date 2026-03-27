@@ -1,0 +1,23 @@
+{
+  "author": "Christoph Knittel",
+  "auto_category": "high_priority",
+  "date": "2025-12-22 11:03:37 +0100",
+  "discovered_at": "2026-03-26T14:34:07.693005",
+  "files_changed": [
+    "AGENTS.md",
+    "CHANGELOG.md",
+    "compiler/core/js_pass_external_shadow.ml",
+    "compiler/core/js_pass_external_shadow.mli",
+    "tests/tests/src/ExternalScopeShadow.mjs",
+    "tests/tests/src/ExternalScopeShadow.res"
+  ],
+  "hash": "ff9d6d37f",
+  "melange_branch": "",
+  "notes": [],
+  "plan": "",
+  "pr_url": "",
+  "reason": "",
+  "status": "discovered",
+  "subject": "Fix `@scope` shadowing (rewrite using globalThis) (#8100)",
+  "updated_at": "2026-03-26T14:34:07.693050"
+}

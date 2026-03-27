@@ -1,0 +1,33 @@
+{
+  "author": "Florian Verdonck",
+  "auto_category": "candidate",
+  "date": "2025-05-29 19:33:36 +0200",
+  "discovered_at": "2026-03-26T14:34:27.220642",
+  "files_changed": [
+    "CHANGELOG.md",
+    "analysis/bin/main.ml",
+    "analysis/src/CmtViewer.ml",
+    "analysis/src/CompletionBackEnd.ml",
+    "analysis/src/CompletionFrontEnd.ml",
+    "analysis/src/Completions.ml",
+    "analysis/src/Loc.ml",
+    "analysis/src/LocalTables.ml",
+    "analysis/src/Scope.ml",
+    "analysis/src/SharedTypes.ml",
+    "analysis/src/TypeUtils.ml",
+    "compiler/ext/warnings.ml",
+    "compiler/ext/warnings.mli",
+    "tests/analysis_tests/tests/src/DotPipeCompleteFromCurrentModule.res",
+    "tests/analysis_tests/tests/src/IncludeModuleCompletion.res",
+    "tests/analysis_tests/tests/src/expected/IncludeModuleCompletion.res.txt"
+  ],
+  "hash": "352fa02b9",
+  "melange_branch": "",
+  "notes": [],
+  "plan": "",
+  "pr_url": "",
+  "reason": "",
+  "status": "discovered",
+  "subject": "Complete functions from included module (#7515)",
+  "updated_at": "2026-03-26T14:34:27.220721"
+}

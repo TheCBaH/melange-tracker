@@ -1,0 +1,22 @@
+{
+  "author": "Cristiano Calcagno",
+  "auto_category": "candidate",
+  "date": "2024-10-30 11:13:11 +0100",
+  "discovered_at": "2026-03-26T14:34:48.791927",
+  "files_changed": [
+    "compiler/core/js_dump.ml",
+    "compiler/core/js_exp_make.ml",
+    "compiler/core/js_exp_make.mli",
+    "tests/tests/src/and_or_simplify.mjs",
+    "tests/tests/src/and_or_simplify.res"
+  ],
+  "hash": "7b9b0c505",
+  "melange_branch": "",
+  "notes": [],
+  "plan": "",
+  "pr_url": "",
+  "reason": "",
+  "status": "discovered",
+  "subject": "Begin adding tests.",
+  "updated_at": "2026-03-26T14:34:48.792036"
+}

@@ -1,0 +1,21 @@
+{
+  "author": "Cristiano Calcagno",
+  "auto_category": "candidate",
+  "date": "2025-01-08 15:14:29 +0100",
+  "discovered_at": "2026-03-26T14:34:40.868190",
+  "files_changed": [
+    "compiler/ml/ast_async.ml",
+    "compiler/syntax/src/jsx_v4.ml",
+    "compiler/syntax/src/res_parsetree_viewer.ml",
+    "tests/syntax_tests/data/parsing/grammar/expressions/expected/async.res.txt"
+  ],
+  "hash": "defd3e4a7",
+  "melange_branch": "",
+  "notes": [],
+  "plan": "",
+  "pr_url": "",
+  "reason": "",
+  "status": "discovered",
+  "subject": "Only store res.async attribute on function nodes.",
+  "updated_at": "2026-03-26T14:34:40.868217"
+}

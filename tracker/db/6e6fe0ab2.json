@@ -1,0 +1,27 @@
+{
+  "author": "Gabriel Nordeborn",
+  "auto_category": "candidate",
+  "date": "2025-07-04 17:22:43 +0200",
+  "discovered_at": "2026-03-26T14:34:24.847492",
+  "files_changed": [
+    "CHANGELOG.md",
+    "compiler/ml/error_message_utils.ml",
+    "compiler/ml/printtyp.ml",
+    "tests/build_tests/super_errors/expected/polyvariant_constructor_payload_mismatch.res.expected",
+    "tests/build_tests/super_errors/expected/polyvariant_constructors_mismatch_second.res.expected",
+    "tests/build_tests/super_errors/expected/polyvariant_name_formatting.res.expected",
+    "tests/build_tests/super_errors/expected/polyvariants_no_overlap.res.expected",
+    "tests/build_tests/super_errors/fixtures/polyvariant_constructor_payload_mismatch.res",
+    "tests/build_tests/super_errors/fixtures/polyvariant_constructors_mismatch_second.res",
+    "tests/build_tests/super_errors/fixtures/polyvariants_no_overlap.res"
+  ],
+  "hash": "6e6fe0ab2",
+  "melange_branch": "",
+  "notes": [],
+  "plan": "",
+  "pr_url": "",
+  "reason": "",
+  "status": "discovered",
+  "subject": "Improve a few error messages around polymorphic variants (#7596)",
+  "updated_at": "2026-03-26T14:34:24.847562"
+}

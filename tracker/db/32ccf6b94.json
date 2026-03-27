@@ -1,0 +1,18 @@
+{
+  "author": "Cristiano Calcagno",
+  "auto_category": "high_priority",
+  "date": "2024-10-31 11:49:21 +0100",
+  "discovered_at": "2026-03-26T14:34:48.033678",
+  "files_changed": [
+    "compiler/core/js_exp_make.ml"
+  ],
+  "hash": "32ccf6b94",
+  "melange_branch": "",
+  "notes": [],
+  "plan": "",
+  "pr_url": "",
+  "reason": "",
+  "status": "discovered",
+  "subject": "Fix Array.isArray.",
+  "updated_at": "2026-03-26T14:34:48.033718"
+}

@@ -1,0 +1,25 @@
+{
+  "author": "Christoph Knittel",
+  "auto_category": "high_priority",
+  "date": "2025-09-07 19:31:45 +0200",
+  "discovered_at": "2026-03-26T14:34:14.239826",
+  "files_changed": [
+    "CHANGELOG.md",
+    "compiler/core/js_dump_string.ml",
+    "tests/syntax_tests/data/printer/expr/exoticIdent.res",
+    "tests/syntax_tests/data/printer/expr/expected/exoticIdent.res.txt",
+    "tests/tests/src/exotic_labels_test.mjs",
+    "tests/tests/src/exotic_labels_test.res",
+    "tests/tests/src/poly_variant_test.mjs",
+    "tests/tests/src/poly_variant_test.res"
+  ],
+  "hash": "05c10e304",
+  "melange_branch": "",
+  "notes": [],
+  "plan": "1) Add Utf8.classify to melstd. 2) Rewrite js_dump_string.ml escape loop: for\u2192while, handle UTF-8 sequences in 128..255 branch. 3) Adapt to melange style (Buffer.add_string, Import module). 4) Add cram test with emoji polyvars.",
+  "pr_url": "",
+  "reason": "UTF-8 emoji bug confirmed present in melange js_dump_string.ml:81-85",
+  "status": "planned",
+  "subject": "Fix code generation for emojis in polyvars and labels (#7853)",
+  "updated_at": "2026-03-26T14:36:16+00:00"
+}

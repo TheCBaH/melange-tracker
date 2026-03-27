@@ -1,0 +1,27 @@
+{
+  "author": "Cristiano Calcagno",
+  "auto_category": "candidate",
+  "date": "2024-12-05 14:48:32 +0100",
+  "discovered_at": "2026-03-26T14:34:42.735021",
+  "files_changed": [
+    "compiler/core/js_dump.ml",
+    "compiler/core/js_pass_flatten_and_mark_dead.ml",
+    "compiler/core/lam_compile.ml",
+    "compiler/core/lam_convert.ml",
+    "compiler/core/lam_util.ml",
+    "compiler/ml/lambda.ml",
+    "compiler/ml/lambda.mli",
+    "compiler/ml/printlambda.ml",
+    "compiler/ml/translcore.ml",
+    "tests/tests/src/record_regression.mjs"
+  ],
+  "hash": "d41591c94",
+  "melange_branch": "",
+  "notes": [],
+  "plan": "",
+  "pr_url": "",
+  "reason": "",
+  "status": "discovered",
+  "subject": "Completely remove record_repr from lambda.",
+  "updated_at": "2026-03-26T14:34:42.735046"
+}

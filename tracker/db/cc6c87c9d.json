@@ -1,0 +1,22 @@
+{
+  "author": "Christoph Knittel",
+  "auto_category": "irrelevant",
+  "date": "2025-01-31 07:38:44 +0100",
+  "discovered_at": "2026-03-26T14:34:39.790074",
+  "files_changed": [
+    "CHANGELOG.md",
+    "compiler/common/bs_version.ml",
+    "package-lock.json",
+    "package.json",
+    "packages/std/package.json"
+  ],
+  "hash": "cc6c87c9d",
+  "melange_branch": "",
+  "notes": [],
+  "plan": "",
+  "pr_url": "",
+  "reason": "Auto-classified as irrelevant by scanner",
+  "status": "irrelevant",
+  "subject": "Set version to 12.0.0-alpha.9 (#7266)",
+  "updated_at": "2026-03-26T14:34:39.790103"
+}

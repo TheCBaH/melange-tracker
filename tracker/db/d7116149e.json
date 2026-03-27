@@ -1,0 +1,33 @@
+{
+  "author": "Gabriel Nordeborn",
+  "auto_category": "candidate",
+  "date": "2025-09-10 15:23:01 +0200",
+  "discovered_at": "2026-03-26T14:34:13.781500",
+  "files_changed": [
+    "CHANGELOG.md",
+    "compiler/ml/record_type_spread.ml",
+    "compiler/ml/typedecl.ml",
+    "compiler/syntax/src/res_core.ml",
+    "tests/build_tests/super_errors/expected/mix_object_record_spread.res.expected",
+    "tests/build_tests/super_errors/expected/mix_object_record_spread_constructor.res.expected",
+    "tests/build_tests/super_errors/expected/mix_record_object_spread.res.expected",
+    "tests/build_tests/super_errors/fixtures/mix_object_record_spread.res",
+    "tests/build_tests/super_errors/fixtures/mix_object_record_spread_constructor.res",
+    "tests/build_tests/super_errors/fixtures/mix_record_object_spread.res",
+    "tests/syntax_tests/data/parsing/errors/other/expected/spread.res.txt",
+    "tests/syntax_tests/data/parsing/errors/typexpr/expected/objectSpread.res.txt",
+    "tests/tests/src/object_type_spreads.mjs",
+    "tests/tests/src/object_type_spreads.res",
+    "tests/tests/src/record_type_spread.mjs",
+    "tests/tests/src/record_type_spread.res"
+  ],
+  "hash": "d7116149e",
+  "melange_branch": "",
+  "notes": [],
+  "plan": "",
+  "pr_url": "",
+  "reason": "",
+  "status": "discovered",
+  "subject": "Support record type spreads in inline records (#7859)",
+  "updated_at": "2026-03-26T14:34:13.781564"
+}

@@ -1,0 +1,21 @@
+{
+  "author": "Cristiano Calcagno",
+  "auto_category": "high_priority",
+  "date": "2025-02-05 09:15:56 +0100",
+  "discovered_at": "2026-03-26T14:34:39.666611",
+  "files_changed": [
+    "CHANGELOG.md",
+    "compiler/ml/typecore.ml",
+    "tests/tests/src/EnvUnifiedOps.mjs",
+    "tests/tests/src/EnvUnifiedOps.res"
+  ],
+  "hash": "7b601f29b",
+  "melange_branch": "",
+  "notes": [],
+  "plan": "",
+  "pr_url": "",
+  "reason": "",
+  "status": "discovered",
+  "subject": "Fix issue with type environments and unified ops.",
+  "updated_at": "2026-03-26T14:34:39.666683"
+}

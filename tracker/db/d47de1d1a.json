@@ -1,0 +1,22 @@
+{
+  "author": "Cristiano Calcagno",
+  "auto_category": "high_priority",
+  "date": "2024-11-25 13:20:02 +0100",
+  "discovered_at": "2026-03-26T14:34:44.155755",
+  "files_changed": [
+    "CHANGELOG.md",
+    "compiler/core/js_analyzer.mli",
+    "compiler/core/js_stmt_make.ml",
+    "tests/tests/src/move_ref_assignment.mjs",
+    "tests/tests/src/move_ref_assignment.res"
+  ],
+  "hash": "d47de1d1a",
+  "melange_branch": "",
+  "notes": [],
+  "plan": "EASY: In js_stmt_make.ml:352, add guard to check assigned var not free in condition expr before hoisting. Widen js_analyzer.mli signature.",
+  "pr_url": "",
+  "reason": "Ref assignment hoisted past conditional guard. Confirmed in js_stmt_make.ml:352",
+  "status": "planned",
+  "subject": "Fix bug where a ref assignment is moved ouside a conditional",
+  "updated_at": "2026-03-26T14:37:45+00:00"
+}

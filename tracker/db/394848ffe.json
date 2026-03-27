@@ -1,0 +1,23 @@
+{
+  "author": "Christoph Knittel",
+  "auto_category": "high_priority",
+  "date": "2025-12-06 11:29:18 +0100",
+  "discovered_at": "2026-03-26T14:34:08.692858",
+  "files_changed": [
+    "CHANGELOG.md",
+    "compiler/ml/includecore.ml",
+    "compiler/ml/primitive.ml",
+    "compiler/ml/primitive.mli",
+    "tests/tests/src/external_abstract_function_arity.res.mjs",
+    "tests/tests/src/external_abstract_function_arity.res.res"
+  ],
+  "hash": "394848ffe",
+  "melange_branch": "",
+  "notes": [],
+  "plan": "",
+  "pr_url": "",
+  "reason": "",
+  "status": "discovered",
+  "subject": "Fix signature matching for externals when abstract alias hides function arity (#8045)",
+  "updated_at": "2026-03-26T14:34:08.692923"
+}

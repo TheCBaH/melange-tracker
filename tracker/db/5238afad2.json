@@ -1,0 +1,18 @@
+{
+  "author": "Jono Prest",
+  "auto_category": "high_priority",
+  "date": "2025-03-12 11:45:58 +0200",
+  "discovered_at": "2026-03-26T14:34:36.915599",
+  "files_changed": [
+    "compiler/ml/translcore.ml"
+  ],
+  "hash": "5238afad2",
+  "melange_branch": "",
+  "notes": [],
+  "plan": "",
+  "pr_url": "",
+  "reason": "",
+  "status": "discovered",
+  "subject": "Fix second case of floatcomp mapped to Pboolmax",
+  "updated_at": "2026-03-26T14:34:36.915658"
+}

@@ -1,0 +1,23 @@
+{
+  "author": "Cristiano Calcagno",
+  "auto_category": "high_priority",
+  "date": "2025-03-14 08:44:42 +0100",
+  "discovered_at": "2026-03-26T14:34:36.710038",
+  "files_changed": [
+    "CHANGELOG.md",
+    "compiler/ml/typecore.ml",
+    "tests/build_tests/super_errors/expected/fun_return_poly1.res.expected",
+    "tests/build_tests/super_errors/expected/fun_return_poly2.res.expected",
+    "tests/build_tests/super_errors/fixtures/fun_return_poly1.res",
+    "tests/build_tests/super_errors/fixtures/fun_return_poly2.res"
+  ],
+  "hash": "e4d98a707",
+  "melange_branch": "",
+  "notes": [],
+  "plan": "",
+  "pr_url": "",
+  "reason": "",
+  "status": "discovered",
+  "subject": "Fix issue with typing application and polymorphic types. (#7338)",
+  "updated_at": "2026-03-26T14:34:36.710077"
+}

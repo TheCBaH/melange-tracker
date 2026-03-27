@@ -1,0 +1,22 @@
+{
+  "author": "Cristiano Calcagno",
+  "auto_category": "candidate",
+  "date": "2024-10-30 18:17:24 +0100",
+  "discovered_at": "2026-03-26T14:34:48.396605",
+  "files_changed": [
+    "compiler/core/js_exp_make.ml",
+    "tests/tests/src/UntaggedVariants.mjs",
+    "tests/tests/src/and_or_simplify.mjs",
+    "tests/tests/src/and_or_simplify.res",
+    "tests/tests/src/option_repr_test.mjs"
+  ],
+  "hash": "eca611ddf",
+  "melange_branch": "",
+  "notes": [],
+  "plan": "",
+  "pr_url": "",
+  "reason": "",
+  "status": "discovered",
+  "subject": "rewrite more directly",
+  "updated_at": "2026-03-26T14:34:48.396688"
+}

@@ -1,0 +1,18 @@
+{
+  "author": "Hyeseong Kim",
+  "auto_category": "candidate",
+  "date": "2024-10-24 02:34:38 +0900",
+  "discovered_at": "2026-03-26T14:34:49.881297",
+  "files_changed": [
+    "compiler/ml/predef.ml"
+  ],
+  "hash": "1313bb85c",
+  "melange_branch": "",
+  "notes": [],
+  "plan": "",
+  "pr_url": "",
+  "reason": "",
+  "status": "discovered",
+  "subject": "Prettify predef registration (#7124)",
+  "updated_at": "2026-03-26T14:34:49.881340"
+}

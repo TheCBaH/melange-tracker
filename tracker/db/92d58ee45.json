@@ -1,0 +1,22 @@
+{
+  "author": "Cristiano Calcagno",
+  "auto_category": "candidate",
+  "date": "2024-12-13 08:42:27 +0100",
+  "discovered_at": "2026-03-26T14:34:41.902511",
+  "files_changed": [
+    "compiler/ml/translcore.ml",
+    "tests/tests/src/class_type_ffi_test.res",
+    "tests/tests/src/more_poly_variant_test.res",
+    "tests/tests/src/test_bs_this.res",
+    "tests/tests/src/uncurried_default.args.mjs"
+  ],
+  "hash": "92d58ee45",
+  "melange_branch": "",
+  "notes": [],
+  "plan": "",
+  "pr_url": "",
+  "reason": "",
+  "status": "discovered",
+  "subject": "Adjustments to lambda translation.",
+  "updated_at": "2026-03-26T14:34:41.902532"
+}

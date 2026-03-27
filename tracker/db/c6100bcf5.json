@@ -1,0 +1,21 @@
+{
+  "author": "Cristiano Calcagno",
+  "auto_category": "candidate",
+  "date": "2024-12-03 08:15:32 +0100",
+  "discovered_at": "2026-03-26T14:34:43.806761",
+  "files_changed": [
+    "compiler/ml/ast_helper0.ml",
+    "compiler/ml/ast_mapper_from0.ml",
+    "compiler/ml/ast_mapper_to0.ml",
+    "compiler/ml/parsetree.ml"
+  ],
+  "hash": "c6100bcf5",
+  "melange_branch": "",
+  "notes": [],
+  "plan": "",
+  "pr_url": "",
+  "reason": "",
+  "status": "discovered",
+  "subject": "Use ast mappers both ways.",
+  "updated_at": "2026-03-26T14:34:43.806791"
+}

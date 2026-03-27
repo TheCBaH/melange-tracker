@@ -1,0 +1,22 @@
+{
+  "author": "Cristiano Calcagno",
+  "auto_category": "high_priority",
+  "date": "2025-03-06 13:25:07 +0100",
+  "discovered_at": "2026-03-26T14:34:37.615265",
+  "files_changed": [
+    "CHANGELOG.md",
+    "compiler/ml/ast_untagged_variants.ml",
+    "compiler/ml/typedecl.ml",
+    "tests/tests/src/UntaggedVariants.mjs",
+    "tests/tests/src/UntaggedVariants.res"
+  ],
+  "hash": "db89ef2fe",
+  "melange_branch": "",
+  "notes": [],
+  "plan": "",
+  "pr_url": "",
+  "reason": "",
+  "status": "discovered",
+  "subject": "Fix recursive untagged variant type checking",
+  "updated_at": "2026-03-26T14:34:37.615357"
+}

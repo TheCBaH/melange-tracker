@@ -1,0 +1,24 @@
+{
+  "author": "Gabriel Nordeborn",
+  "auto_category": "candidate",
+  "date": "2025-04-14 13:41:18 +0200",
+  "discovered_at": "2026-03-26T14:34:34.509424",
+  "files_changed": [
+    "CHANGELOG.md",
+    "compiler/ml/typetexp.ml",
+    "tests/build_tests/super_errors/expected/suggest_module_for_missing_identifier.res.expected",
+    "tests/build_tests/super_errors/expected/suggest_module_for_missing_identifier_with_spellcheck.res.expected",
+    "tests/build_tests/super_errors/fixtures/suggest_module_for_missing_identifier.res",
+    "tests/build_tests/super_errors/fixtures/suggest_module_for_missing_identifier_with_spellcheck.res",
+    "tests/build_tests/super_errors/input.js"
+  ],
+  "hash": "179568419",
+  "melange_branch": "",
+  "notes": [],
+  "plan": "",
+  "pr_url": "",
+  "reason": "",
+  "status": "discovered",
+  "subject": "Error message: Suggest module in place of value where it makes sense (#7384)",
+  "updated_at": "2026-03-26T14:34:34.509496"
+}

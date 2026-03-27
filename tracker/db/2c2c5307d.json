@@ -1,0 +1,19 @@
+{
+  "author": "Cristiano Calcagno",
+  "auto_category": "candidate",
+  "date": "2024-11-01 18:26:59 +0100",
+  "discovered_at": "2026-03-26T14:34:46.875417",
+  "files_changed": [
+    "compiler/ml/parmatch.ml",
+    "tests/tests/src/DictTests.mjs"
+  ],
+  "hash": "2c2c5307d",
+  "melange_branch": "",
+  "notes": [],
+  "plan": "",
+  "pr_url": "",
+  "reason": "",
+  "status": "discovered",
+  "subject": "Code gen: improve pattern matching of optional fields.",
+  "updated_at": "2026-03-26T14:34:46.875457"
+}

@@ -1,0 +1,22 @@
+{
+  "author": "Gabriel Nordeborn",
+  "auto_category": "candidate",
+  "date": "2024-10-13 19:12:53 +0200",
+  "discovered_at": "2026-03-26T14:34:50.688484",
+  "files_changed": [
+    "CHANGELOG.md",
+    "compiler/ml/error_message_utils.ml",
+    "compiler/ml/typecore.ml",
+    "tests/build_tests/super_errors/expected/object_passed_when_record_expected.res.expected",
+    "tests/build_tests/super_errors/fixtures/object_passed_when_record_expected.res"
+  ],
+  "hash": "e050527f7",
+  "melange_branch": "",
+  "notes": [],
+  "plan": "",
+  "pr_url": "",
+  "reason": "",
+  "status": "discovered",
+  "subject": "Improve error message when an object is passed where a record is expected (#7101)",
+  "updated_at": "2026-03-26T14:34:50.688572"
+}

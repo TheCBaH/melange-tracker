@@ -1,0 +1,21 @@
+{
+  "author": "Joshua Hernandez",
+  "auto_category": "candidate",
+  "date": "2025-12-26 16:29:50 -0300",
+  "discovered_at": "2026-03-26T14:34:07.424759",
+  "files_changed": [
+    "CHANGELOG.md",
+    "compiler/ml/ast_untagged_variants.ml",
+    "tests/tests/src/UntaggedVariants.mjs",
+    "tests/tests/src/UntaggedVariants.res"
+  ],
+  "hash": "039d6e862",
+  "melange_branch": "",
+  "notes": [],
+  "plan": "",
+  "pr_url": "",
+  "reason": "",
+  "status": "discovered",
+  "subject": "Add support for Set, Map, WeakSet and WeakMap to @unboxed (#8009)",
+  "updated_at": "2026-03-26T14:34:07.424810"
+}

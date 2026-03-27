@@ -1,0 +1,21 @@
+{
+  "author": "Cristiano Calcagno",
+  "auto_category": "candidate",
+  "date": "2024-10-26 11:15:02 +0200",
+  "discovered_at": "2026-03-26T14:34:49.197467",
+  "files_changed": [
+    "compiler/ml/ast_untagged_variants.ml",
+    "tests/tests/src/UntaggedVariants.mjs",
+    "tests/tests/src/core/Core_NullableTests.mjs",
+    "tests/tests/src/variantsMatching.mjs"
+  ],
+  "hash": "60b99eaeb",
+  "melange_branch": "",
+  "notes": [],
+  "plan": "",
+  "pr_url": "",
+  "reason": "",
+  "status": "discovered",
+  "subject": "respect declaration order",
+  "updated_at": "2026-03-26T14:34:49.197521"
+}

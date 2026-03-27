@@ -1,0 +1,22 @@
+{
+  "author": "Gabriel Nordeborn",
+  "auto_category": "candidate",
+  "date": "2025-08-25 16:29:01 +0200",
+  "discovered_at": "2026-03-26T14:34:17.241517",
+  "files_changed": [
+    "CHANGELOG.md",
+    "compiler/ml/error_message_utils.ml",
+    "compiler/ml/typecore.ml",
+    "tests/build_tests/super_errors/expected/ternary_branch_mismatch.res.expected",
+    "tests/build_tests/super_errors/fixtures/ternary_branch_mismatch.res"
+  ],
+  "hash": "3931a969c",
+  "melange_branch": "",
+  "notes": [],
+  "plan": "",
+  "pr_url": "",
+  "reason": "",
+  "status": "discovered",
+  "subject": "Dedicated error message for ternaries (#7804)",
+  "updated_at": "2026-03-26T14:34:17.241623"
+}

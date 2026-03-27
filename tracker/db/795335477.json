@@ -1,0 +1,23 @@
+{
+  "author": "Gabriel Nordeborn",
+  "auto_category": "candidate",
+  "date": "2025-07-24 21:43:41 +0200",
+  "discovered_at": "2026-03-26T14:34:20.564100",
+  "files_changed": [
+    "CHANGELOG.md",
+    "compiler/ml/error_message_utils.ml",
+    "tests/build_tests/super_errors/expected/string_constant_to_polyvariant.res.expected",
+    "tests/build_tests/super_errors/expected/string_constant_to_variant.res.expected",
+    "tests/build_tests/super_errors/fixtures/string_constant_to_polyvariant.res",
+    "tests/build_tests/super_errors/fixtures/string_constant_to_variant.res"
+  ],
+  "hash": "795335477",
+  "melange_branch": "",
+  "notes": [],
+  "plan": "",
+  "pr_url": "",
+  "reason": "",
+  "status": "discovered",
+  "subject": "Hint in error for string constants matching expected variant (#7711)",
+  "updated_at": "2026-03-26T14:34:20.564147"
+}

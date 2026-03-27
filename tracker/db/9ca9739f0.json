@@ -1,0 +1,30 @@
+{
+  "author": "Cristiano Calcagno",
+  "auto_category": "high_priority",
+  "date": "2025-02-07 15:42:21 +0100",
+  "discovered_at": "2026-03-26T14:34:39.525663",
+  "files_changed": [
+    "CHANGELOG.md",
+    "compiler/ml/typecore.ml",
+    "tests/build_tests/super_errors/expected/arity_mismatch.res.expected",
+    "tests/build_tests/super_errors/expected/method_arity_mismatch.res.expected",
+    "tests/build_tests/super_errors/expected/moreArguments1.res.expected",
+    "tests/build_tests/super_errors/expected/moreArguments2.res.expected",
+    "tests/build_tests/super_errors/expected/moreArguments3.res.expected",
+    "tests/build_tests/super_errors/expected/moreArguments4.res.expected",
+    "tests/build_tests/super_errors/expected/moreArguments5.res.expected",
+    "tests/build_tests/super_errors/expected/opt_args_arity.res.expected",
+    "tests/build_tests/super_errors/expected/recursive_type.res.expected",
+    "tests/build_tests/super_errors/expected/warnings1.res.expected",
+    "tests/build_tests/super_errors/fixtures/opt_args_arity.res"
+  ],
+  "hash": "9ca9739f0",
+  "melange_branch": "",
+  "notes": [],
+  "plan": "",
+  "pr_url": "",
+  "reason": "",
+  "status": "discovered",
+  "subject": "Fix arity error message with optional args. (#7284)",
+  "updated_at": "2026-03-26T14:34:39.525752"
+}

@@ -1,0 +1,24 @@
+{
+  "author": "Cristiano Calcagno",
+  "auto_category": "candidate",
+  "date": "2024-11-03 16:08:16 +0100",
+  "discovered_at": "2026-03-26T14:34:46.051760",
+  "files_changed": [
+    "compiler/core/lam_compile.ml",
+    "tests/tests/src/UntaggedVariants.mjs",
+    "tests/tests/src/and_or_simplify.mjs",
+    "tests/tests/src/core/Core_JsonTests.mjs",
+    "tests/tests/src/json_decorders.mjs",
+    "tests/tests/src/json_decorders.res",
+    "tests/tests/src/pattern_match_json.mjs"
+  ],
+  "hash": "0ccd2921a",
+  "melange_branch": "",
+  "notes": [],
+  "plan": "",
+  "pr_url": "",
+  "reason": "",
+  "status": "discovered",
+  "subject": "Fuse const and block cases when the defaults are equal.",
+  "updated_at": "2026-03-26T14:34:46.051807"
+}

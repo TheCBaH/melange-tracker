@@ -1,0 +1,20 @@
+{
+  "author": "Cristiano Calcagno",
+  "auto_category": "high_priority",
+  "date": "2024-12-05 20:07:47 +0100",
+  "discovered_at": "2026-03-26T14:34:42.670956",
+  "files_changed": [
+    "compiler/ml/ctype.ml",
+    "compiler/ml/parmatch.ml",
+    "tests/tests/src/record_regression.mjs"
+  ],
+  "hash": "606719fa1",
+  "melange_branch": "",
+  "notes": [],
+  "plan": "",
+  "pr_url": "",
+  "reason": "",
+  "status": "discovered",
+  "subject": "Fix change to test.",
+  "updated_at": "2026-03-26T14:34:42.670979"
+}

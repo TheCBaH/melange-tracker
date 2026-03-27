@@ -1,0 +1,21 @@
+{
+  "author": "Gabriel Nordeborn",
+  "auto_category": "candidate",
+  "date": "2025-06-12 13:45:24 +0200",
+  "discovered_at": "2026-03-26T14:34:26.820365",
+  "files_changed": [
+    "CHANGELOG.md",
+    "compiler/bsc/rescript_compiler_main.ml",
+    "compiler/ml/clflags.ml",
+    "compiler/ml/clflags.mli"
+  ],
+  "hash": "05be83f64",
+  "melange_branch": "",
+  "notes": [],
+  "plan": "",
+  "pr_url": "",
+  "reason": "",
+  "status": "discovered",
+  "subject": "Editor mode config option (#7541)",
+  "updated_at": "2026-03-26T14:34:26.820452"
+}

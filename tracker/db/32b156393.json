@@ -1,0 +1,18 @@
+{
+  "author": "Hyeseong Kim",
+  "auto_category": "candidate",
+  "date": "2024-11-25 22:22:27 +0900",
+  "discovered_at": "2026-03-26T14:34:44.225921",
+  "files_changed": [
+    "compiler/ml/translcore.ml"
+  ],
+  "hash": "32b156393",
+  "melange_branch": "",
+  "notes": [],
+  "plan": "",
+  "pr_url": "",
+  "reason": "",
+  "status": "discovered",
+  "subject": "Bring `#import` back for Core compatibility (#7177)",
+  "updated_at": "2026-03-26T14:34:44.225955"
+}

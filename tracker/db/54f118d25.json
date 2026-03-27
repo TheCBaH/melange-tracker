@@ -1,0 +1,21 @@
+{
+  "author": "Gabriel Nordeborn",
+  "auto_category": "candidate",
+  "date": "2025-08-26 22:18:37 +0200",
+  "discovered_at": "2026-03-26T14:34:16.664810",
+  "files_changed": [
+    "CHANGELOG.md",
+    "compiler/ml/typecore.ml",
+    "tests/build_tests/super_errors/expected/moreArguments1.res.expected",
+    "tests/build_tests/super_errors/expected/moreArguments4.res.expected"
+  ],
+  "hash": "54f118d25",
+  "melange_branch": "",
+  "notes": [],
+  "plan": "",
+  "pr_url": "",
+  "reason": "",
+  "status": "discovered",
+  "subject": "Hint about partial application in error where required labels are missing (#7807)",
+  "updated_at": "2026-03-26T14:34:16.664871"
+}

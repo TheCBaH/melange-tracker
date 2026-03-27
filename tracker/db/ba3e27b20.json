@@ -1,0 +1,21 @@
+{
+  "author": "Cristiano Calcagno",
+  "auto_category": "high_priority",
+  "date": "2024-12-15 20:32:21 +0100",
+  "discovered_at": "2026-03-26T14:34:41.709820",
+  "files_changed": [
+    "compiler/ml/ast_mapper_from0.ml",
+    "compiler/ml/ast_mapper_to0.ml",
+    "tests/tools_tests/ppx/TestPpx.res",
+    "tests/tools_tests/src/expected/TestPpx.res.jsout"
+  ],
+  "hash": "ba3e27b20",
+  "melange_branch": "",
+  "notes": [],
+  "plan": "",
+  "pr_url": "",
+  "reason": "",
+  "status": "discovered",
+  "subject": "Fix ppx mapper and add example.",
+  "updated_at": "2026-03-26T14:34:41.709853"
+}

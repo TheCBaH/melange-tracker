@@ -1,0 +1,20 @@
+{
+  "author": "Cristiano Calcagno",
+  "auto_category": "candidate",
+  "date": "2024-11-09 08:37:25 +0100",
+  "discovered_at": "2026-03-26T14:34:44.774911",
+  "files_changed": [
+    "compiler/core/js_analyzer.ml",
+    "compiler/core/js_exp_make.ml",
+    "tests/tests/src/option_repr_test.mjs"
+  ],
+  "hash": "51d1abeba",
+  "melange_branch": "",
+  "notes": [],
+  "plan": "",
+  "pr_url": "",
+  "reason": "",
+  "status": "discovered",
+  "subject": "Only apply optimisations when there are no side effects.",
+  "updated_at": "2026-03-26T14:34:44.774948"
+}

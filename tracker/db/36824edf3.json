@@ -1,0 +1,26 @@
+{
+  "author": "Gabriel Nordeborn",
+  "auto_category": "candidate",
+  "date": "2025-07-25 11:26:23 +0200",
+  "discovered_at": "2026-03-26T14:34:20.209099",
+  "files_changed": [
+    "CHANGELOG.md",
+    "compiler/ml/typecore.ml",
+    "compiler/ml/typecore.mli",
+    "tests/build_tests/super_errors/expected/suggest_existing_arity_fn_1.res.expected",
+    "tests/build_tests/super_errors/expected/suggest_existing_arity_fn_2.res.expected",
+    "tests/build_tests/super_errors/expected/suggest_existing_arity_fn_3.res.expected",
+    "tests/build_tests/super_errors/fixtures/suggest_existing_arity_fn_1.res",
+    "tests/build_tests/super_errors/fixtures/suggest_existing_arity_fn_2.res",
+    "tests/build_tests/super_errors/fixtures/suggest_existing_arity_fn_3.res"
+  ],
+  "hash": "36824edf3",
+  "melange_branch": "",
+  "notes": [],
+  "plan": "",
+  "pr_url": "",
+  "reason": "",
+  "status": "discovered",
+  "subject": "Suggest different arity functions when it makes sense (#7712)",
+  "updated_at": "2026-03-26T14:34:20.209167"
+}

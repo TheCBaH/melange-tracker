@@ -1,0 +1,20 @@
+{
+  "author": "Cristiano Calcagno",
+  "auto_category": "candidate",
+  "date": "2025-07-16 17:44:50 +0200",
+  "discovered_at": "2026-03-26T14:34:22.101330",
+  "files_changed": [
+    "compiler/frontend/ast_core_type.ml",
+    "compiler/ml/ast_helper.ml",
+    "compiler/ml/ast_helper.mli"
+  ],
+  "hash": "2c96b7958",
+  "melange_branch": "",
+  "notes": [],
+  "plan": "",
+  "pr_url": "",
+  "reason": "",
+  "status": "discovered",
+  "subject": "Begin adding an arrow construction to Ast_helper that takes a list of arguments.",
+  "updated_at": "2026-03-26T14:34:22.101407"
+}

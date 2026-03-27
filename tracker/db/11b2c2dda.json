@@ -1,0 +1,21 @@
+{
+  "author": "Cristiano Calcagno",
+  "auto_category": "high_priority",
+  "date": "2025-01-06 12:45:24 +0100",
+  "discovered_at": "2026-03-26T14:34:41.143079",
+  "files_changed": [
+    "CHANGELOG.md",
+    "compiler/core/js_exp_make.ml",
+    "tests/tests/src/test_zero_nullable.mjs",
+    "tests/tests/src/test_zero_nullable.res"
+  ],
+  "hash": "11b2c2dda",
+  "melange_branch": "",
+  "notes": [],
+  "plan": "",
+  "pr_url": "",
+  "reason": "",
+  "status": "discovered",
+  "subject": "Fix leftover assert false in code for `null != undefined`",
+  "updated_at": "2026-03-26T14:34:41.143103"
+}

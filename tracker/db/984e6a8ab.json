@@ -1,0 +1,18 @@
+{
+  "author": "Cristiano Calcagno",
+  "auto_category": "candidate",
+  "date": "2024-12-02 10:08:48 +0100",
+  "discovered_at": "2026-03-26T14:34:43.879261",
+  "files_changed": [
+    "compiler/ml/parsetree1.ml"
+  ],
+  "hash": "984e6a8ab",
+  "melange_branch": "",
+  "notes": [],
+  "plan": "",
+  "pr_url": "",
+  "reason": "",
+  "status": "discovered",
+  "subject": "Delete parsetree1.ml",
+  "updated_at": "2026-03-26T14:34:43.879290"
+}

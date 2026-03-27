@@ -1,0 +1,25 @@
+{
+  "author": "Cristiano Calcagno",
+  "auto_category": "candidate",
+  "date": "2025-07-15 10:38:22 +0200",
+  "discovered_at": "2026-03-26T14:34:22.570645",
+  "files_changed": [
+    "compiler/gentype/TranslateCoreType.ml",
+    "compiler/ml/printtyped.ml",
+    "compiler/ml/tast_iterator.ml",
+    "compiler/ml/tast_mapper.ml",
+    "compiler/ml/typedtree.ml",
+    "compiler/ml/typedtree.mli",
+    "compiler/ml/typedtreeIter.ml",
+    "compiler/ml/typetexp.ml"
+  ],
+  "hash": "07c6fb73f",
+  "melange_branch": "",
+  "notes": [],
+  "plan": "",
+  "pr_url": "",
+  "reason": "",
+  "status": "discovered",
+  "subject": "Also adapt arrow in typedtree.",
+  "updated_at": "2026-03-26T14:34:22.570682"
+}

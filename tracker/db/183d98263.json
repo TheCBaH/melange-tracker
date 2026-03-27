@@ -1,0 +1,21 @@
+{
+  "author": "Gabriel Nordeborn",
+  "auto_category": "candidate",
+  "date": "2025-08-28 12:16:25 +0200",
+  "discovered_at": "2026-03-26T14:34:16.096199",
+  "files_changed": [
+    "CHANGELOG.md",
+    "compiler/ml/typecore.ml",
+    "tests/build_tests/super_errors/expected/inline_record_escape.res.expected",
+    "tests/build_tests/super_errors/fixtures/inline_record_escape.res"
+  ],
+  "hash": "183d98263",
+  "melange_branch": "",
+  "notes": [],
+  "plan": "",
+  "pr_url": "",
+  "reason": "",
+  "status": "discovered",
+  "subject": "Try to improve error message about inline record escaping scope (#7808)",
+  "updated_at": "2026-03-26T14:34:16.096294"
+}

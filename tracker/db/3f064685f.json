@@ -1,0 +1,31 @@
+{
+  "author": "Hyeseong Kim",
+  "auto_category": "candidate",
+  "date": "2025-03-26 22:30:22 +0900",
+  "discovered_at": "2026-03-26T14:34:35.812866",
+  "files_changed": [
+    ".github/workflows/ci.yml",
+    "analysis.opam",
+    "compiler/dune",
+    "compiler/ext/dune",
+    "compiler/jsoo/dune",
+    "compiler/jsoo/jsoo_playground_main.ml",
+    "compiler/syntax/cli/res_cli.ml",
+    "dune-project",
+    "playground/playground_test.js",
+    "rescript.opam",
+    "rescript.opam.template",
+    "scripts/copyExes.js",
+    "tests/syntax_benchmarks/Benchmark.ml",
+    "tools.opam"
+  ],
+  "hash": "3f064685f",
+  "melange_branch": "",
+  "notes": [],
+  "plan": "",
+  "pr_url": "",
+  "reason": "",
+  "status": "discovered",
+  "subject": "Upgrade dune version to get WASM binary (#7349)",
+  "updated_at": "2026-03-26T14:34:35.813034"
+}

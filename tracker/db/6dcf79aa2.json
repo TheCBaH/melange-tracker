@@ -1,0 +1,22 @@
+{
+  "author": "Christoph Knittel",
+  "auto_category": "high_priority",
+  "date": "2025-09-10 09:25:10 +0200",
+  "discovered_at": "2026-03-26T14:34:14.091636",
+  "files_changed": [
+    "CHANGELOG.md",
+    "compiler/core/lam_compile_external_call.ml",
+    "compiler/frontend/ast_external_process.ml",
+    "tests/build_tests/super_errors/expected/get_unit_arg.res.expected",
+    "tests/build_tests/super_errors/fixtures/get_unit_arg.res"
+  ],
+  "hash": "6dcf79aa2",
+  "melange_branch": "",
+  "notes": [],
+  "plan": "",
+  "pr_url": "",
+  "reason": "",
+  "status": "discovered",
+  "subject": "Fix crash with `@get` on external of type `unit => 'a` (#7866)",
+  "updated_at": "2026-03-26T14:34:14.091678"
+}

@@ -1,0 +1,22 @@
+{
+  "author": "Florian Verdonck",
+  "auto_category": "candidate",
+  "date": "2025-05-12 10:08:05 +0200",
+  "discovered_at": "2026-03-26T14:34:29.751427",
+  "files_changed": [
+    "compiler/core/js_dump.ml",
+    "compiler/core/js_dump_property.ml",
+    "compiler/core/js_dump_property.mli",
+    "tests/tests/src/jsx_preserve_test.mjs",
+    "tests/tests/src/jsx_preserve_test.res"
+  ],
+  "hash": "d825723c9",
+  "melange_branch": "",
+  "notes": [],
+  "plan": "",
+  "pr_url": "",
+  "reason": "",
+  "status": "discovered",
+  "subject": "Change snakecase to camelcase for prop (#7460)",
+  "updated_at": "2026-03-26T14:34:29.751493"
+}

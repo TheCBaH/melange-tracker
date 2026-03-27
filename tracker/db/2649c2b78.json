@@ -1,0 +1,20 @@
+{
+  "author": "Cristiano Calcagno",
+  "auto_category": "candidate",
+  "date": "2024-12-02 09:46:10 +0100",
+  "discovered_at": "2026-03-26T14:34:44.018510",
+  "files_changed": [
+    "compiler/ml/parsetree.ml",
+    "compiler/ml/parsetree0.ml",
+    "compiler/ml/parsetree1.ml"
+  ],
+  "hash": "2649c2b78",
+  "melange_branch": "",
+  "notes": [],
+  "plan": "",
+  "pr_url": "",
+  "reason": "",
+  "status": "discovered",
+  "subject": "Skeleton to modernise ast.",
+  "updated_at": "2026-03-26T14:34:44.018534"
+}

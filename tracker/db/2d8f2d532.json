@@ -1,0 +1,27 @@
+{
+  "author": "Cristiano Calcagno",
+  "auto_category": "candidate",
+  "date": "2024-12-05 08:54:34 +0100",
+  "discovered_at": "2026-03-26T14:34:42.799368",
+  "files_changed": [
+    "compiler/ml/ctype.ml",
+    "compiler/ml/matching.ml",
+    "compiler/ml/predef.ml",
+    "compiler/ml/printtyped.ml",
+    "compiler/ml/rec_check.ml",
+    "compiler/ml/translcore.ml",
+    "compiler/ml/typecore.ml",
+    "compiler/ml/typedecl.ml",
+    "compiler/ml/types.ml",
+    "compiler/ml/types.mli"
+  ],
+  "hash": "2d8f2d532",
+  "melange_branch": "",
+  "notes": [],
+  "plan": "",
+  "pr_url": "",
+  "reason": "",
+  "status": "discovered",
+  "subject": "Remove Record_optional_labels entirely.",
+  "updated_at": "2026-03-26T14:34:42.799391"
+}

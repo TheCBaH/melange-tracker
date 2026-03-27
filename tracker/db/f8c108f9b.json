@@ -1,0 +1,28 @@
+{
+  "author": "Gabriel Nordeborn",
+  "auto_category": "candidate",
+  "date": "2025-08-26 20:06:27 +0200",
+  "discovered_at": "2026-03-26T14:34:16.808579",
+  "files_changed": [
+    "CHANGELOG.md",
+    "compiler/ml/error_message_utils.ml",
+    "compiler/ml/typecore.ml",
+    "tests/build_tests/super_errors/expected/array_literal_passed_to_tuple.res.expected",
+    "tests/build_tests/super_errors/expected/object_literal_passed_when_record_expected.res.expected",
+    "tests/build_tests/super_errors/expected/pass_braced_identifier_to_record.res.expected",
+    "tests/build_tests/super_errors/expected/pass_braced_identifier_to_record_fn_argument.res.expected",
+    "tests/build_tests/super_errors/expected/string_constant_to_polyvariant.res.expected",
+    "tests/build_tests/super_errors/expected/string_constant_to_variant.res.expected",
+    "tests/build_tests/super_errors/fixtures/pass_braced_identifier_to_record.res",
+    "tests/build_tests/super_errors/fixtures/pass_braced_identifier_to_record_fn_argument.res"
+  ],
+  "hash": "f8c108f9b",
+  "melange_branch": "",
+  "notes": [],
+  "plan": "",
+  "pr_url": "",
+  "reason": "",
+  "status": "discovered",
+  "subject": "Error for braced single identifier to record (#7806)",
+  "updated_at": "2026-03-26T14:34:16.808641"
+}
