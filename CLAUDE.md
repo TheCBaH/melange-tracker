@@ -9,38 +9,73 @@ melange-tracker is a tool for tracking upstream [rescript-lang/rescript](https:/
 ```
 .devcontainer/   — Dev container config (OCaml toolchain + auto upstream fetch)
 .github/         — CI workflows (devcontainer build)
-tracker/         — Cherry-pick tracking CLI + JSON database
-  tracker.sh     — Main script: scan, triage, plan, advance, report
-  db/            — One JSON file per tracked upstream commit
+tracker/         — Cherry-pick tracking CLI (OCaml + cmdliner)
+  bin/main.ml    — CLI entry point with cmdliner subcommands
+  lib/types.ml   — Core types with ppx_deriving_jsont for YAML serialization
+  lib/db.ml      — Load/save single YAML database via yamlt
+  lib/git.ml     — Shell out to git for commit info
+  lib/scanner.ml — Scan upstream commits with auto-classification
+  lib/commands.ml — All CLI command implementations
+  db.yaml        — Single YAML database file
+  tracker.sh     — Legacy bash script (superseded by OCaml CLI)
+  db/            — Legacy per-commit JSON files
 docs/            — Design docs, fork analysis, candidate rankings
+modules/         — Git submodules (yamlt, yamlrw, bytesrw-eio)
 melange/         — Git submodule (melange-re/melange)
 ```
 
-## Key Commands
+## Build & Common Targets
 
 ```sh
-# Scan upstream for new commits (requires upstream remote in melange/)
-tracker/tracker.sh scan [since-date]
+make                    # Build everything (dune build)
+make clean              # Clean build artifacts
+make format             # Format code (dune fmt)
+make tracker-status     # Show tracker summary stats
+make tracker-queue      # List unanalyzed commits
+make tracker-report     # Show actionable candidates by stage
+make tracker-verify     # Verify merge-ready candidates and dependencies
+make tracker-scan       # Scan upstream for new commits
+make melange-setup      # Init submodule + add upstream remote
+make melange-build      # Build melange (dune build in melange/)
+make melange-test       # Run melange tests (dune runtest in melange/)
+make opam-install-test  # Install opam deps including test deps
+```
 
-# Show high-priority candidates
-tracker/tracker.sh report
+## Tracker CLI
 
-# Triage a commit
-tracker/tracker.sh triage <hash> relevant|irrelevant|wont_pick [reason]
+The tracker is an OCaml executable using cmdliner. Run directly via dune:
 
-# Add adaptation plan
-tracker/tracker.sh plan <hash> "description"
+```sh
+opam exec -- dune exec tracker/bin/main.exe -- <command> [args]
+```
 
-# Advance through stages: discovered → triaged → planned → in_progress → testing → merged
-tracker/tracker.sh advance <hash>
+### Commands
 
-# Summary stats
-tracker/tracker.sh status
+```sh
+tracker scan [--since DATE]        # Scan upstream for new commits, add as Queued
+tracker status                     # Summary stats by status category
+tracker list [--status STATUS]     # List entries, optionally filtered
+tracker show HASH                  # Show entry + git commit details (fetched live)
+tracker queue                      # List all Queued entries (triage queue)
+tracker triage HASH STATUS [REASON] # Set status (irrelevant|wont_pick|deferred|undecided|candidate)
+tracker plan HASH NOTES            # Set candidate to Planned stage with notes
+tracker advance HASH               # Advance candidate stage (planned → in_progress)
+tracker depend HASH DEP_HASH...    # Add dependency links
+tracker pr HASH PR_ID              # Record PR for a candidate
+tracker merge HASH MELANGE_HASH    # Record merge with melange commit hash
+tracker report                     # Show actionable candidates grouped by stage
+tracker verify                     # Verify merge-ready candidates + dependency chain
 ```
 
 ## Setup (in devcontainer or locally)
 
 The melange submodule needs the upstream rescript remote:
+
+```sh
+make melange-setup
+```
+
+Or manually:
 
 ```sh
 git submodule update --init --recursive --depth 1
@@ -51,29 +86,58 @@ git fetch upstream
 
 The devcontainer `postCreateCommand` does this automatically.
 
+## Melange Build Verification
+
+To verify that melange builds and tests pass (mirrors CI at
+[TheCBaH/melange devcontainer-build.yml](https://github.com/TheCBaH/melange/blob/devel/.github/workflows/devcontainer-build.yml)):
+
+```sh
+make melange-setup       # init submodule + upstream remote
+make opam-install-test   # install deps including test deps
+make melange-build       # dune build in melange/
+make melange-test        # dune runtest in melange/
+```
+
 ## Environment Variables
 
 - `MELANGE_DIR` — Path to melange checkout (default: `../melange` relative to tracker/)
-- `UPSTREAM_REMOTE` — Git remote name for rescript (default: `upstream`)
-- `UPSTREAM_BRANCH` — Upstream branch to scan (default: `master`)
+- `TRACKER_DIR` — Path to directory containing `db.yaml` (default: `.`)
+
+## Data Model
+
+The tracker stores only metadata not present in git commits. Git info (subject, author, date, files) is fetched live.
+
+### Status types (OCaml variants):
+
+```
+Queued                              — unanalyzed, in the triage queue
+Deferred { reason }                 — needs future analysis
+Undecided { notes }                 — analyzed, status not yet decided
+Irrelevant { reason }               — terminal: not applicable
+Wont_pick { reason }                — terminal: decided against
+Candidate { stage; depends_on; notes } — subject for integration
+```
+
+### Candidate stages:
+
+```
+Planned → In_progress → Pull_request { pr_id } → Merged { melange_hash }
+```
+
+### Dependencies
+
+Candidates can declare `depends_on` — a list of commit hashes that must be picked together. The `verify` command checks dependency chains for correctness.
 
 ## Design Documents
 
-- `docs/design.md` — Workflow stages, auto-classification heuristics, DB schema
+- `docs/design.md` — Workflow stages, data model, YAML schema
 - `docs/analysis.md` — Fork divergence analysis (fork point, code overlap areas)
 - `docs/candidates.md` — Ranked cherry-pick candidates with status
 
-## Workflow Stages
-
-```
-discovered → triaged → planned → in_progress → testing → merged
-                ↘ irrelevant (terminal)
-                ↘ wont_pick (terminal)
-```
-
 ## Key Details
 
-- Database: one JSON file per commit in `tracker/db/`, keyed by short hash
-- Auto-classification: bug fixes in `jscomp/core/` or `compiler/core/` are `high_priority`
-- The tracker shell script requires `python3` for JSON manipulation
+- Database: single `tracker/db.yaml` file, serialized via yamlt (YAML codec using Jsont type descriptions)
+- Types derived with `ppx_deriving_jsont` for automatic YAML round-tripping
+- Auto-classification: bug fixes in `jscomp/core/` or `compiler/core/` are high priority
 - Rescript renamed `jscomp/` → `compiler/` in 2024; the scanner checks both paths
+- Dependencies: yamlt, yamlrw, jsont, bytesrw (in modules/), cmdliner, ppx_deriving_jsont (opam)

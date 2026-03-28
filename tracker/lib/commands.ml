@@ -280,3 +280,104 @@ let report () =
     in
     if queued > 0 then
       Printf.printf "\n(%d commits in triage queue)\n" queued)
+
+(** verify — check all merge-ready candidates, resolving dependencies *)
+let verify () =
+  with_db (fun db ->
+    let entry_by_hash h =
+      List.find_opt
+        (fun (e : Types.entry) ->
+          String.length h <= String.length e.hash
+          && String.sub e.hash 0 (String.length h) = h)
+        db.entries
+    in
+    (* Collect all candidates that are in PR or in_progress stage *)
+    let merge_ready =
+      List.filter
+        (fun (e : Types.entry) ->
+          match e.status with
+          | Candidate { stage = Pull_request _ | In_progress; _ } -> true
+          | _ -> false)
+        db.entries
+    in
+    if merge_ready = [] then (
+      Printf.printf "No candidates ready to merge.\n";
+      exit 0);
+    let errors = ref 0 in
+    let warnings = ref 0 in
+    (* Topological check: verify dependency ordering *)
+    let rec check_deps ~visited hash =
+      if List.mem hash visited then (
+        Printf.eprintf "  ERROR: circular dependency detected at %s\n" hash;
+        incr errors;
+        false)
+      else
+        match entry_by_hash hash with
+        | None ->
+          Printf.eprintf "  ERROR: dependency %s not found in database\n" hash;
+          incr errors;
+          false
+        | Some dep -> (
+          match dep.status with
+          | Candidate { stage = Merged _; depends_on; _ } ->
+            (* Merged dep is OK, but check its own deps recursively *)
+            List.for_all
+              (fun d -> check_deps ~visited:(hash :: visited) d)
+              depends_on
+          | Candidate { stage = Pull_request _; depends_on; _ } ->
+            Printf.eprintf "  WARNING: dependency %s is still a PR (not yet merged)\n"
+              (String.sub dep.hash 0 (min 9 (String.length dep.hash)));
+            incr warnings;
+            List.for_all
+              (fun d -> check_deps ~visited:(hash :: visited) d)
+              depends_on
+          | Candidate { stage = In_progress | Planned; _ } ->
+            Printf.eprintf "  ERROR: dependency %s is not ready (status: %s)\n"
+              (String.sub dep.hash 0 (min 9 (String.length dep.hash)))
+              (Db.status_name dep.status);
+            incr errors;
+            false
+          | status ->
+            Printf.eprintf "  ERROR: dependency %s has non-candidate status: %s\n"
+              (String.sub dep.hash 0 (min 9 (String.length dep.hash)))
+              (Db.status_name status);
+            incr errors;
+            false)
+    in
+    Printf.printf "Verifying %d merge-ready candidates...\n\n"
+      (List.length merge_ready);
+    List.iter
+      (fun (e : Types.entry) ->
+        let short = String.sub e.hash 0 (min 9 (String.length e.hash)) in
+        let info = Git.show_commit e.hash in
+        let subject =
+          match info with Some i -> i.subject | None -> "(unknown)"
+        in
+        Printf.printf "  %s  %s\n" short subject;
+        (match e.status with
+         | Candidate { depends_on; stage; _ } ->
+           (match stage with
+            | Pull_request { pr_id } ->
+              Printf.printf "    stage: pull_request #%d\n" pr_id
+            | In_progress -> Printf.printf "    stage: in_progress\n"
+            | _ -> ());
+           if depends_on = [] then
+             Printf.printf "    deps: none\n"
+           else (
+             Printf.printf "    deps: %s\n" (String.concat ", " depends_on);
+             let _ =
+               List.for_all
+                 (fun d -> check_deps ~visited:[ e.hash ] d)
+                 depends_on
+             in
+             ())
+         | _ -> ());
+        Printf.printf "\n")
+      merge_ready;
+    Printf.printf "---\n";
+    Printf.printf "Checked: %d candidates, %d errors, %d warnings\n"
+      (List.length merge_ready) !errors !warnings;
+    if !errors > 0 then (
+      Printf.eprintf "\nVerification FAILED.\n";
+      exit 1)
+    else Printf.printf "\nVerification passed.\n")

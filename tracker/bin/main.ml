@@ -98,6 +98,11 @@ let report_cmd =
   let doc = "Show actionable candidates grouped by stage." in
   Cmd.v (Cmd.info "report" ~doc) Term.(const Tracker_lib.Commands.report $ const ())
 
+(* verify *)
+let verify_cmd =
+  let doc = "Verify all merge-ready candidates, checking dependency ordering." in
+  Cmd.v (Cmd.info "verify" ~doc) Term.(const Tracker_lib.Commands.verify $ const ())
+
 (* main *)
 let () =
   let doc = "Track upstream rescript commits as cherry-pick candidates for melange." in
@@ -117,6 +122,7 @@ let () =
         pr_cmd;
         merge_cmd;
         report_cmd;
+        verify_cmd;
       ]
   in
   exit (Cmd.eval cmd)
