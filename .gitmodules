@@ -1,3 +1,12 @@
 [submodule "melange"]
 	path = melange
 	url = https://github.com/melange-re/melange.git
+[submodule "modules/ocaml-yamlrw"]
+	path = modules/ocaml-yamlrw
+	url = https://tangled.org/anil.recoil.org/ocaml-yamlrw
+[submodule "modules/ocaml-yamlt"]
+	path = modules/ocaml-yamlt
+	url = https://tangled.org/anil.recoil.org/ocaml-yamlt
+[submodule "modules/ocaml-bytesrw-eio"]
+	path = modules/ocaml-bytesrw-eio
+	url = https://tangled.org/anil.recoil.org/ocaml-bytesrw-eio

@@ -1,0 +1,4 @@
+; Root dune file
+; Exclude melange submodule from the build
+
+(dirs :standard \ melange)

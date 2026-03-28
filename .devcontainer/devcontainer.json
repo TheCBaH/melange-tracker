@@ -18,7 +18,7 @@
         },
         "./features/ocaml": {
             "version": "5.4.0",
-            "packages": "alcotest cmdliner cppo js_of_ocaml menhir merlin ppxlib reason reason-react-ppx odoc"
+            "packages": "alcotest bytesrw cmdliner cppo crowbar eio eio_main js_of_ocaml jsonm jsont mdx menhir merlin ppxlib reason reason-react-ppx odoc"
         }
     },
     "customizations": {
