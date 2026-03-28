@@ -89,18 +89,18 @@ let scan ~(db : Types.db) =
   let branch = db.upstream_branch in
   let since_commit = db.last_scan_commit in
   let lines = Git.log_since_commit ~since_commit ~remote ~branch () in
-  let new_entries = ref 0 in
-  let db = ref db in
+  let new_count = ref 0 in
+  let new_hashes = ref [] in
   List.iter
     (fun line ->
       match Git.parse_log_line line with
       | None -> ()
       | Some (hash, _subject) ->
-        if Db.find_entry hash !db |> Option.is_none then (
-          let entry = Types.{ hash; status = Queued } in
-          db := Db.add_entry entry !db;
-          incr new_entries))
+        if not (Db.mem hash db) && not (List.mem hash !new_hashes) then (
+          new_hashes := hash :: !new_hashes;
+          incr new_count))
     lines;
+  let queued = db.queued @ List.rev !new_hashes in
   let tip = Git.tip_commit ~remote ~branch () in
-  let db = { !db with last_scan_commit = Some tip } in
-  (db, !new_entries)
+  let db = { db with queued; last_scan_commit = Some tip } in
+  (db, !new_count)

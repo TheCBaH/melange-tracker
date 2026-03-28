@@ -1,6 +1,7 @@
 (** Core types for the melange cherry-pick tracker.
 
-    Only stores metadata not derivable from the git commit itself. *)
+    Only stores metadata not derivable from the git commit itself.
+    Each status category has its own type and top-level DB field. *)
 
 (** Integration stage for commits being ported to melange. *)
 type candidate_stage =
@@ -10,33 +11,32 @@ type candidate_stage =
   | Merged of { melange_hash : string } [@nowrap]
 [@@deriving jsont] [@@type_key "stage"]
 
-(** Commit status — each variant carries only the data specific to that state. *)
-type status =
-  | Queued
-  | Deferred of { reason : string } [@nowrap]
-  | Undecided of { notes : string } [@nowrap]
-  | Irrelevant of { reason : string } [@nowrap]
-  | Wont_pick of { reason : string } [@nowrap]
-  | Candidate of {
-      stage : candidate_stage;
-      depends_on : string list;
-      notes : string;
-    }
-      [@nowrap]
-[@@deriving jsont] [@@type_key "kind"]
-
-(** A tracked commit — only stores data NOT in the git commit itself. *)
-type entry = {
+(** A candidate for integration — rich per-commit data. *)
+type candidate = {
   hash : string;
-  status : status;
+  stage : candidate_stage;
+  depends_on : string list;
+  notes : string;
 }
 [@@deriving jsont]
 
-(** Top-level database. *)
+(** A commit with an associated reason or notes string. *)
+type with_reason = {
+  hash : string;
+  reason : string;
+}
+[@@deriving jsont]
+
+(** Top-level database — each status category is a separate field. *)
 type db = {
   upstream_remote : string; [@absent "upstream"]
   upstream_branch : string; [@absent "master"]
   last_scan_commit : string option; [@option]
-  entries : entry list;
+  queued : string list;
+  deferred : with_reason list;
+  undecided : with_reason list;
+  irrelevant : with_reason list;
+  wont_pick : with_reason list;
+  candidates : candidate list;
 }
 [@@deriving jsont]

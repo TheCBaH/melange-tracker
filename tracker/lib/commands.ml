@@ -9,13 +9,17 @@ let with_db_save f =
   let db = f db in
   Db.save db
 
+let short_hash h = String.sub h 0 (min 9 (String.length h))
+
 (** scan — fetch upstream and add new commits as Queued *)
 let scan _since =
   with_db_save (fun db ->
     let db, n = Scanner.scan ~db in
     Printf.printf "Added %d new commits to the queue.\n" n;
     (match db.last_scan_commit with
-     | Some c -> Printf.printf "Scanned up to: %s\n" (String.sub c 0 (min 12 (String.length c)))
+     | Some c ->
+       Printf.printf "Scanned up to: %s\n"
+         (String.sub c 0 (min 12 (String.length c)))
      | None -> ());
     db)
 
@@ -23,8 +27,7 @@ let scan _since =
 let status () =
   with_db (fun db ->
     let tbl = Db.count_by_status db in
-    let total = List.length db.entries in
-    Printf.printf "Total tracked: %d\n" total;
+    Printf.printf "Total tracked: %d\n" (Db.total_count db);
     let order =
       [
         "queued";
@@ -49,48 +52,43 @@ let list_entries filter =
   with_db (fun db ->
     let entries =
       match filter with
-      | None -> db.entries
+      | None -> Db.all_entries db
       | Some f ->
-        List.filter
-          (fun (e : Types.entry) -> Db.status_name e.status = f)
-          db.entries
+        List.filter (fun (_, sv) -> Db.status_name sv = f) (Db.all_entries db)
     in
     List.iter
-      (fun (e : Types.entry) ->
-        let info = Git.show_commit e.hash in
+      (fun (hash, sv) ->
+        let info = Git.show_commit hash in
         let subject =
           match info with Some i -> i.subject | None -> "(unknown)"
         in
-        Printf.printf "%-12s %-14s %s\n" (String.sub e.hash 0 (min 9 (String.length e.hash)))
-          (Db.status_name e.status)
-          subject)
+        Printf.printf "%-12s %-14s %s\n" (short_hash hash)
+          (Db.status_name sv) subject)
       entries)
 
 (** show — display full details for a commit *)
 let show hash =
   with_db (fun db ->
-    match Db.find_entry hash db with
+    match Db.find hash db with
     | None -> Printf.eprintf "No entry found for %s\n" hash
-    | Some entry ->
-      Printf.printf "Hash:   %s\n" entry.hash;
-      Printf.printf "Status: %s\n" (Db.status_name entry.status);
-      (match entry.status with
-       | Deferred { reason } | Irrelevant { reason } | Wont_pick { reason } ->
+    | Some (full_hash, sv) ->
+      Printf.printf "Hash:   %s\n" full_hash;
+      Printf.printf "Status: %s\n" (Db.status_name sv);
+      (match sv with
+       | VDeferred reason | VIrrelevant reason | VWont_pick reason ->
          Printf.printf "Reason: %s\n" reason
-       | Undecided { notes } ->
-         Printf.printf "Notes:  %s\n" notes
-       | Candidate { stage; depends_on; notes } ->
-         (match stage with
-          | Pull_request { pr_id } ->
-            Printf.printf "PR:     #%d\n" pr_id
+       | VUndecided notes -> Printf.printf "Notes:  %s\n" notes
+       | VCandidate c ->
+         (match c.stage with
+          | Pull_request { pr_id } -> Printf.printf "PR:     #%d\n" pr_id
           | Merged { melange_hash } ->
             Printf.printf "Merged: %s\n" melange_hash
           | _ -> ());
-         if depends_on <> [] then
-           Printf.printf "Deps:   %s\n" (String.concat ", " depends_on);
-         if notes <> "" then Printf.printf "Notes:  %s\n" notes
-       | Queued -> ());
-      (match Git.show_commit entry.hash with
+         if c.depends_on <> [] then
+           Printf.printf "Deps:   %s\n" (String.concat ", " c.depends_on);
+         if c.notes <> "" then Printf.printf "Notes:  %s\n" c.notes
+       | VQueued -> ());
+      (match Git.show_commit full_hash with
        | None -> Printf.printf "\n(git info unavailable)\n"
        | Some info ->
          Printf.printf "\nSubject: %s\n" info.subject;
@@ -102,277 +100,258 @@ let show hash =
 (** queue — shortcut for listing Queued entries *)
 let queue () = list_entries (Some "queued")
 
-(** triage — set the status of a commit *)
+(** triage — move a commit to a new status *)
 let triage hash status_str reason =
   with_db_save (fun db ->
-    Db.update_entry hash
-      (fun (e : Types.entry) ->
-        let status =
-          match status_str with
-          | "irrelevant" ->
-            let reason = Option.value ~default:"" reason in
-            Types.Irrelevant { reason }
-          | "wont_pick" ->
-            let reason = Option.value ~default:"" reason in
-            Types.Wont_pick { reason }
-          | "deferred" ->
-            let reason = Option.value ~default:"" reason in
-            Types.Deferred { reason }
-          | "undecided" ->
-            let notes = Option.value ~default:"" reason in
-            Types.Undecided { notes }
-          | "candidate" ->
-            let notes = Option.value ~default:"" reason in
-            Types.Candidate { stage = Planned; depends_on = []; notes }
-          | s -> failwith (Printf.sprintf "Unknown status: %s" s)
-        in
-        Printf.printf "%s -> %s\n" (String.sub e.hash 0 9) (Db.status_name status);
-        { e with status })
+    match Db.find hash db with
+    | None -> failwith (Printf.sprintf "No entry found for %s" hash)
+    | Some (full_hash, _) ->
+      let db = Db.remove full_hash db in
+      let reason_str = Option.value ~default:"" reason in
+      let db =
+        match status_str with
+        | "irrelevant" ->
+          {
+            db with
+            irrelevant =
+              db.irrelevant @ [ { hash = full_hash; reason = reason_str } ];
+          }
+        | "wont_pick" ->
+          {
+            db with
+            wont_pick =
+              db.wont_pick @ [ { hash = full_hash; reason = reason_str } ];
+          }
+        | "deferred" ->
+          {
+            db with
+            deferred =
+              db.deferred @ [ { hash = full_hash; reason = reason_str } ];
+          }
+        | "undecided" ->
+          {
+            db with
+            undecided =
+              db.undecided @ [ { hash = full_hash; reason = reason_str } ];
+          }
+        | "candidate" ->
+          {
+            db with
+            candidates =
+              db.candidates
+              @ [
+                  {
+                    hash = full_hash;
+                    stage = Planned;
+                    depends_on = [];
+                    notes = reason_str;
+                  };
+                ];
+          }
+        | s -> failwith (Printf.sprintf "Unknown status: %s" s)
+      in
+      Printf.printf "%s -> %s\n" (short_hash full_hash) status_str;
       db)
 
-(** plan — set a candidate to Planned with notes *)
+(** plan — set a commit as a planned candidate with notes *)
 let plan hash notes =
   with_db_save (fun db ->
-    Db.update_entry hash
-      (fun (e : Types.entry) ->
-        let status =
-          match e.status with
-          | Candidate c -> Types.Candidate { c with stage = Planned; notes }
-          | Queued | Undecided _ | Deferred _ ->
-            Types.Candidate { stage = Planned; depends_on = []; notes }
-          | s ->
-            failwith
-              (Printf.sprintf "Cannot plan from status %s" (Db.status_name s))
-        in
-        { e with status })
-      db)
+    match Db.find hash db with
+    | None -> failwith (Printf.sprintf "No entry found for %s" hash)
+    | Some (full_hash, sv) ->
+      let db = Db.remove full_hash db in
+      let candidate =
+        match sv with
+        | VCandidate c -> { c with stage = Planned; notes }
+        | VQueued | VUndecided _ | VDeferred _ ->
+          Types.
+            { hash = full_hash; stage = Planned; depends_on = []; notes }
+        | _ ->
+          failwith
+            (Printf.sprintf "Cannot plan from status %s" (Db.status_name sv))
+      in
+      { db with candidates = db.candidates @ [ candidate ] })
 
 (** advance — move candidate to next stage *)
 let advance hash =
   with_db_save (fun db ->
-    Db.update_entry hash
-      (fun (e : Types.entry) ->
-        let status =
-          match e.status with
-          | Candidate ({ stage = Planned; _ } as c) ->
-            Types.Candidate { c with stage = In_progress }
-          | Candidate ({ stage = In_progress; _ } as _c) ->
-            failwith "Use 'pr' or 'merge' to advance from in_progress"
-          | s ->
-            failwith
-              (Printf.sprintf "Cannot advance from status %s"
-                 (Db.status_name s))
-        in
-        Printf.printf "%s -> %s\n"
-          (String.sub e.hash 0 9)
-          (Db.status_name status);
-        { e with status })
-      db)
+    match Db.find hash db with
+    | None -> failwith (Printf.sprintf "No entry found for %s" hash)
+    | Some (_, VCandidate ({ stage = Planned; _ } as c)) ->
+      let db = Db.remove c.hash db in
+      let c = { c with stage = In_progress } in
+      Printf.printf "%s -> in_progress\n" (short_hash c.hash);
+      { db with candidates = db.candidates @ [ c ] }
+    | Some (_, VCandidate { stage = In_progress; _ }) ->
+      failwith "Use 'pr' or 'merge' to advance from in_progress"
+    | Some (_, sv) ->
+      failwith
+        (Printf.sprintf "Cannot advance from status %s" (Db.status_name sv)))
 
 (** depend — add dependency links *)
 let depend hash dep_hashes =
   with_db_save (fun db ->
-    Db.update_entry hash
-      (fun (e : Types.entry) ->
-        let status =
-          match e.status with
-          | Candidate c ->
-            let depends_on =
-              List.fold_left
-                (fun acc d -> if List.mem d acc then acc else acc @ [ d ])
-                c.depends_on dep_hashes
-            in
-            Types.Candidate { c with depends_on }
-          | s ->
-            failwith
-              (Printf.sprintf "Cannot add deps to status %s"
-                 (Db.status_name s))
-        in
-        { e with status })
-      db)
+    match Db.find hash db with
+    | None -> failwith (Printf.sprintf "No entry found for %s" hash)
+    | Some (_, VCandidate c) ->
+      let db = Db.remove c.hash db in
+      let depends_on =
+        List.fold_left
+          (fun acc d -> if List.mem d acc then acc else acc @ [ d ])
+          c.depends_on dep_hashes
+      in
+      let c = { c with depends_on } in
+      { db with candidates = db.candidates @ [ c ] }
+    | Some (_, sv) ->
+      failwith
+        (Printf.sprintf "Cannot add deps to status %s" (Db.status_name sv)))
 
 (** pr — record a PR for a candidate *)
 let pr hash pr_id =
   with_db_save (fun db ->
-    Db.update_entry hash
-      (fun (e : Types.entry) ->
-        let status =
-          match e.status with
-          | Candidate c ->
-            Types.Candidate { c with stage = Pull_request { pr_id } }
-          | s ->
-            failwith
-              (Printf.sprintf "Cannot set PR from status %s"
-                 (Db.status_name s))
-        in
-        Printf.printf "%s -> pull_request #%d\n" (String.sub e.hash 0 9) pr_id;
-        { e with status })
-      db)
+    match Db.find hash db with
+    | None -> failwith (Printf.sprintf "No entry found for %s" hash)
+    | Some (_, VCandidate c) ->
+      let db = Db.remove c.hash db in
+      let c = { c with stage = Pull_request { pr_id } } in
+      Printf.printf "%s -> pull_request #%d\n" (short_hash c.hash) pr_id;
+      { db with candidates = db.candidates @ [ c ] }
+    | Some (_, sv) ->
+      failwith
+        (Printf.sprintf "Cannot set PR from status %s" (Db.status_name sv)))
 
 (** merge — record merge with melange commit hash *)
 let merge hash melange_hash =
   with_db_save (fun db ->
-    Db.update_entry hash
-      (fun (e : Types.entry) ->
-        let status =
-          match e.status with
-          | Candidate c ->
-            Types.Candidate { c with stage = Merged { melange_hash } }
-          | s ->
-            failwith
-              (Printf.sprintf "Cannot merge from status %s"
-                 (Db.status_name s))
-        in
-        Printf.printf "%s -> merged (%s)\n" (String.sub e.hash 0 9) melange_hash;
-        { e with status })
-      db)
+    match Db.find hash db with
+    | None -> failwith (Printf.sprintf "No entry found for %s" hash)
+    | Some (_, VCandidate c) ->
+      let db = Db.remove c.hash db in
+      let c = { c with stage = Merged { melange_hash } } in
+      Printf.printf "%s -> merged (%s)\n" (short_hash c.hash) melange_hash;
+      { db with candidates = db.candidates @ [ c ] }
+    | Some (_, sv) ->
+      failwith
+        (Printf.sprintf "Cannot merge from status %s" (Db.status_name sv)))
 
 (** report — show actionable candidates grouped by stage *)
 let report () =
   with_db (fun db ->
-    let candidates =
-      List.filter
-        (fun (e : Types.entry) ->
-          match e.status with Types.Candidate _ -> true | _ -> false)
-        db.entries
-    in
     let groups =
-      [ "planned"; "in_progress"; "pull_request"; "merged" ]
+      [ ("PLANNED", fun (c : Types.candidate) -> c.stage = Planned);
+        ("IN_PROGRESS", fun c -> c.stage = In_progress);
+        ("PULL_REQUEST", fun c ->
+           match c.stage with Pull_request _ -> true | _ -> false);
+        ("MERGED", fun c ->
+           match c.stage with Merged _ -> true | _ -> false);
+      ]
     in
     List.iter
-      (fun group ->
-        let entries =
-          List.filter
-            (fun (e : Types.entry) -> Db.status_name e.status = group)
-            candidates
-        in
+      (fun (label, pred) ->
+        let entries = List.filter pred db.candidates in
         if entries <> [] then (
-          Printf.printf "\n=== %s ===\n" (String.uppercase_ascii group);
+          Printf.printf "\n=== %s ===\n" label;
           List.iter
-            (fun (e : Types.entry) ->
-              let info = Git.show_commit e.hash in
+            (fun (c : Types.candidate) ->
+              let info = Git.show_commit c.hash in
               let subject =
                 match info with Some i -> i.subject | None -> "(unknown)"
               in
-              Printf.printf "  %s  %s\n"
-                (String.sub e.hash 0 (min 9 (String.length e.hash)))
-                subject;
-              (match e.status with
-               | Candidate { depends_on; notes; stage } ->
-                 (match stage with
-                  | Pull_request { pr_id } ->
-                    Printf.printf "           PR #%d\n" pr_id
-                  | Merged { melange_hash } ->
-                    Printf.printf "           merged as %s\n" melange_hash
-                  | _ -> ());
-                 if depends_on <> [] then
-                   Printf.printf "           depends on: %s\n"
-                     (String.concat ", " depends_on);
-                 if notes <> "" then
-                   Printf.printf "           %s\n" notes
-               | _ -> ()))
+              Printf.printf "  %s  %s\n" (short_hash c.hash) subject;
+              (match c.stage with
+               | Pull_request { pr_id } ->
+                 Printf.printf "           PR #%d\n" pr_id
+               | Merged { melange_hash } ->
+                 Printf.printf "           merged as %s\n" melange_hash
+               | _ -> ());
+              if c.depends_on <> [] then
+                Printf.printf "           depends on: %s\n"
+                  (String.concat ", " c.depends_on);
+              if c.notes <> "" then
+                Printf.printf "           %s\n" c.notes)
             entries))
       groups;
-    let queued =
-      List.length
-        (List.filter
-           (fun (e : Types.entry) -> e.status = Queued)
-           db.entries)
-    in
-    if queued > 0 then
-      Printf.printf "\n(%d commits in triage queue)\n" queued)
+    if db.queued <> [] then
+      Printf.printf "\n(%d commits in triage queue)\n" (List.length db.queued))
 
 (** verify — check all merge-ready candidates, resolving dependencies *)
 let verify () =
   with_db (fun db ->
-    let entry_by_hash h =
-      List.find_opt
-        (fun (e : Types.entry) ->
-          String.length h <= String.length e.hash
-          && String.sub e.hash 0 (String.length h) = h)
-        db.entries
-    in
-    (* Collect all candidates that are in PR or in_progress stage *)
     let merge_ready =
       List.filter
-        (fun (e : Types.entry) ->
-          match e.status with
-          | Candidate { stage = Pull_request _ | In_progress; _ } -> true
+        (fun (c : Types.candidate) ->
+          match c.stage with
+          | Pull_request _ | In_progress -> true
           | _ -> false)
-        db.entries
+        db.candidates
     in
     if merge_ready = [] then (
       Printf.printf "No candidates ready to merge.\n";
       exit 0);
     let errors = ref 0 in
     let warnings = ref 0 in
-    (* Topological check: verify dependency ordering *)
     let rec check_deps ~visited hash =
       if List.mem hash visited then (
         Printf.eprintf "  ERROR: circular dependency detected at %s\n" hash;
         incr errors;
         false)
       else
-        match entry_by_hash hash with
+        match Db.find hash db with
         | None ->
           Printf.eprintf "  ERROR: dependency %s not found in database\n" hash;
           incr errors;
           false
-        | Some dep -> (
-          match dep.status with
-          | Candidate { stage = Merged _; depends_on; _ } ->
-            (* Merged dep is OK, but check its own deps recursively *)
+        | Some (_, VCandidate dep) -> (
+          match dep.stage with
+          | Merged _ ->
             List.for_all
               (fun d -> check_deps ~visited:(hash :: visited) d)
-              depends_on
-          | Candidate { stage = Pull_request _; depends_on; _ } ->
-            Printf.eprintf "  WARNING: dependency %s is still a PR (not yet merged)\n"
-              (String.sub dep.hash 0 (min 9 (String.length dep.hash)));
+              dep.depends_on
+          | Pull_request _ ->
+            Printf.eprintf
+              "  WARNING: dependency %s is still a PR (not yet merged)\n"
+              (short_hash dep.hash);
             incr warnings;
             List.for_all
               (fun d -> check_deps ~visited:(hash :: visited) d)
-              depends_on
-          | Candidate { stage = In_progress | Planned; _ } ->
-            Printf.eprintf "  ERROR: dependency %s is not ready (status: %s)\n"
-              (String.sub dep.hash 0 (min 9 (String.length dep.hash)))
-              (Db.status_name dep.status);
-            incr errors;
-            false
-          | status ->
-            Printf.eprintf "  ERROR: dependency %s has non-candidate status: %s\n"
-              (String.sub dep.hash 0 (min 9 (String.length dep.hash)))
-              (Db.status_name status);
+              dep.depends_on
+          | In_progress | Planned ->
+            Printf.eprintf
+              "  ERROR: dependency %s is not ready (status: %s)\n"
+              (short_hash dep.hash)
+              (Db.status_name (VCandidate dep));
             incr errors;
             false)
+        | Some (_, sv) ->
+          Printf.eprintf
+            "  ERROR: dependency %s has non-candidate status: %s\n"
+            (short_hash hash) (Db.status_name sv);
+          incr errors;
+          false
     in
     Printf.printf "Verifying %d merge-ready candidates...\n\n"
       (List.length merge_ready);
     List.iter
-      (fun (e : Types.entry) ->
-        let short = String.sub e.hash 0 (min 9 (String.length e.hash)) in
-        let info = Git.show_commit e.hash in
+      (fun (c : Types.candidate) ->
+        let info = Git.show_commit c.hash in
         let subject =
           match info with Some i -> i.subject | None -> "(unknown)"
         in
-        Printf.printf "  %s  %s\n" short subject;
-        (match e.status with
-         | Candidate { depends_on; stage; _ } ->
-           (match stage with
-            | Pull_request { pr_id } ->
-              Printf.printf "    stage: pull_request #%d\n" pr_id
-            | In_progress -> Printf.printf "    stage: in_progress\n"
-            | _ -> ());
-           if depends_on = [] then
-             Printf.printf "    deps: none\n"
-           else (
-             Printf.printf "    deps: %s\n" (String.concat ", " depends_on);
-             let _ =
-               List.for_all
-                 (fun d -> check_deps ~visited:[ e.hash ] d)
-                 depends_on
-             in
-             ())
+        Printf.printf "  %s  %s\n" (short_hash c.hash) subject;
+        (match c.stage with
+         | Pull_request { pr_id } ->
+           Printf.printf "    stage: pull_request #%d\n" pr_id
+         | In_progress -> Printf.printf "    stage: in_progress\n"
          | _ -> ());
+        if c.depends_on = [] then Printf.printf "    deps: none\n"
+        else (
+          Printf.printf "    deps: %s\n" (String.concat ", " c.depends_on);
+          let _ =
+            List.for_all
+              (fun d -> check_deps ~visited:[ c.hash ] d)
+              c.depends_on
+          in
+          ());
         Printf.printf "\n")
       merge_ready;
     Printf.printf "---\n";
