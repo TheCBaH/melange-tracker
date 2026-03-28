@@ -17,8 +17,6 @@ tracker/         — Cherry-pick tracking CLI (OCaml + cmdliner)
   lib/scanner.ml — Scan upstream commits with auto-classification
   lib/commands.ml — All CLI command implementations
   db.yaml        — Single YAML database file
-  tracker.sh     — Legacy bash script (superseded by OCaml CLI)
-  db/            — Legacy per-commit JSON files
 docs/            — Design docs, fork analysis, candidate rankings
 modules/         — Git submodules (yamlt, yamlrw, bytesrw-eio)
 melange/         — Git submodule (melange-re/melange)
