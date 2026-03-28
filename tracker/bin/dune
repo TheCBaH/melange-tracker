@@ -1,0 +1,3 @@
+(executable
+ (name main)
+ (libraries tracker_lib cmdliner))
