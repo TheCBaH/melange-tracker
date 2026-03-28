@@ -1,5 +1,5 @@
 (library
  (name tracker_lib)
- (libraries yamlt unix cmdliner)
+ (libraries yamlt cmdliner shexp.process)
  (preprocess
   (pps ppx_deriving_jsont)))

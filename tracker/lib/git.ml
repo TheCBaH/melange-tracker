@@ -1,4 +1,6 @@
-(** Git operations — shell out to git for commit information. *)
+(** Git operations using shexp for safe command execution. *)
+
+module P = Shexp_process
 
 let melange_dir () =
   Sys.getenv_opt "MELANGE_DIR"
@@ -6,18 +8,9 @@ let melange_dir () =
 
 let run_git args =
   let dir = melange_dir () in
-  let cmd =
-    Printf.sprintf "git -C %s %s" (Filename.quote dir) (String.concat " " args)
-  in
-  let ic = Unix.open_process_in cmd in
-  let buf = Buffer.create 1024 in
-  (try
-     while true do
-       Buffer.add_char buf (input_char ic)
-     done
-   with End_of_file -> ());
-  let _ = Unix.close_process_in ic in
-  Buffer.contents buf
+  P.eval
+    (P.chdir dir
+       (P.capture_unit [ Stdout ] (P.run "git" args)))
 
 let run_git_lines args =
   let output = run_git args in
@@ -33,7 +26,9 @@ type commit_info = {
 }
 
 let show_commit hash =
-  let output = run_git [ "show"; "--no-patch"; "--format=%H%n%s%n%an%n%ai"; hash ] in
+  let output =
+    run_git [ "show"; "--no-patch"; "--format=%H%n%s%n%an%n%ai"; hash ]
+  in
   match String.split_on_char '\n' output with
   | full_hash :: subject :: author :: date :: _ ->
     let files =
@@ -54,8 +49,7 @@ let log_since_commit ~since_commit ~remote ~branch () =
 
 let tip_commit ~remote ~branch () =
   let ref_spec = Printf.sprintf "%s/%s" remote branch in
-  let output = run_git [ "rev-parse"; ref_spec ] in
-  String.trim output
+  String.trim (run_git [ "rev-parse"; ref_spec ])
 
 let parse_log_line line =
   match String.index_opt line ' ' with
