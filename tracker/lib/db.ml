@@ -9,7 +9,7 @@ let empty =
     {
       upstream_remote = "upstream";
       upstream_branch = "master";
-      last_scan = None;
+      last_scan_commit = None;
       entries = [];
     }
 

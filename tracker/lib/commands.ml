@@ -14,8 +14,9 @@ let scan _since =
   with_db_save (fun db ->
     let db, n = Scanner.scan ~db in
     Printf.printf "Added %d new commits to the queue.\n" n;
-    if Option.is_some db.last_scan then
-      Printf.printf "Last scan: %s\n" (Option.get db.last_scan);
+    (match db.last_scan_commit with
+     | Some c -> Printf.printf "Scanned up to: %s\n" (String.sub c 0 (min 12 (String.length c)))
+     | None -> ());
     db)
 
 (** status — summary stats *)

@@ -36,7 +36,7 @@ type entry = {
 type db = {
   upstream_remote : string; [@absent "upstream"]
   upstream_branch : string; [@absent "master"]
-  last_scan : string option; [@option]
+  last_scan_commit : string option; [@option]
   entries : entry list;
 }
 [@@deriving jsont]

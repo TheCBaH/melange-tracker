@@ -37,7 +37,7 @@ type entry = {
 type db = {
   upstream_remote : string;
   upstream_branch : string;
-  last_scan : string option;
+  last_scan_commit : string option;
   entries : entry list;
 }
 ```
@@ -49,7 +49,7 @@ All types use `[@@deriving jsont]` with `ppx_deriving_jsont`, which generates Js
 ```yaml
 upstream_remote: upstream
 upstream_branch: master
-last_scan: "2026-03-28"
+last_scan_commit: "abc123def456789..."
 entries:
   - hash: e92879ea2
     status:
@@ -117,6 +117,10 @@ Candidates can declare `depends_on` — a list of upstream commit hashes that mu
 - In-progress/Planned dependencies: error (not ready)
 - Circular dependencies: error
 - Missing dependencies: error
+
+## Scanning
+
+The scanner tracks its position using `last_scan_commit` — the hash of the most recent upstream commit seen. On each scan it runs `git log <last_scan_commit>..<remote>/<branch>` to fetch only new commits since the last scan. On first scan (when `last_scan_commit` is absent), all commits on the upstream branch are considered. After scanning, `last_scan_commit` is updated to the current tip of the upstream branch.
 
 ## Auto-Classification Heuristics
 

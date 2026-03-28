@@ -42,17 +42,20 @@ let show_commit hash =
     Some { hash = full_hash; subject; author; date; files }
   | _ -> None
 
-let log_oneline ?(since = "2024-01-01") ~remote ~branch () =
+let log_since_commit ~since_commit ~remote ~branch () =
   let _ = run_git [ "fetch"; remote ] in
-  let range = Printf.sprintf "--since=%s" since in
-  run_git_lines
-    [
-      "log";
-      "--oneline";
-      "--format=%H %s";
-      range;
-      Printf.sprintf "%s/%s" remote branch;
-    ]
+  let ref_spec = Printf.sprintf "%s/%s" remote branch in
+  let range =
+    match since_commit with
+    | Some commit -> Printf.sprintf "%s..%s" commit ref_spec
+    | None -> ref_spec
+  in
+  run_git_lines [ "log"; "--format=%H %s"; "--reverse"; range ]
+
+let tip_commit ~remote ~branch () =
+  let ref_spec = Printf.sprintf "%s/%s" remote branch in
+  let output = run_git [ "rev-parse"; ref_spec ] in
+  String.trim output
 
 let parse_log_line line =
   match String.index_opt line ' ' with

@@ -107,6 +107,13 @@ make melange-test        # dune runtest in melange/
 
 The tracker stores only metadata not present in git commits. Git info (subject, author, date, files) is fetched live.
 
+### Database fields
+
+- `upstream_remote` — git remote name (default: `upstream`)
+- `upstream_branch` — branch to scan (default: `master`)
+- `last_scan_commit` — hash of the last scanned upstream commit; scan uses `git log <last_scan_commit>..<remote>/<branch>` to fetch only new commits
+- `entries` — list of tracked commits
+
 ### Status types (OCaml variants):
 
 ```

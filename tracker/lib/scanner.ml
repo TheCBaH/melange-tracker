@@ -87,10 +87,8 @@ let classify subject files =
 let scan ~(db : Types.db) =
   let remote = db.upstream_remote in
   let branch = db.upstream_branch in
-  let since =
-    match db.last_scan with Some d -> d | None -> "2024-01-01"
-  in
-  let lines = Git.log_oneline ~since ~remote ~branch () in
+  let since_commit = db.last_scan_commit in
+  let lines = Git.log_since_commit ~since_commit ~remote ~branch () in
   let new_entries = ref 0 in
   let db = ref db in
   List.iter
@@ -103,9 +101,6 @@ let scan ~(db : Types.db) =
           db := Db.add_entry entry !db;
           incr new_entries))
     lines;
-  let today =
-    let t = Unix.gmtime (Unix.gettimeofday ()) in
-    Printf.sprintf "%04d-%02d-%02d" (1900 + t.tm_year) (1 + t.tm_mon) t.tm_mday
-  in
-  let db = { !db with last_scan = Some today } in
+  let tip = Git.tip_commit ~remote ~branch () in
+  let db = { !db with last_scan_commit = Some tip } in
   (db, !new_entries)
