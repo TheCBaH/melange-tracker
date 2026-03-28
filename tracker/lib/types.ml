@@ -14,6 +14,7 @@ type candidate_stage =
 (** A candidate for integration — rich per-commit data. *)
 type candidate = {
   hash : string;
+  subject : string;
   stage : candidate_stage;
   depends_on : string list;
   notes : string;

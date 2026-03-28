@@ -58,3 +58,35 @@ let parse_log_line line =
     let subject = String.sub line (i + 1) (String.length line - i - 1) in
     Some (hash, subject)
   | None -> None
+
+let subject hash =
+  String.trim (run_git [ "show"; "--no-patch"; "--format=%s"; hash ])
+
+let run_git_exit args =
+  let dir = melange_dir () in
+  P.eval (P.chdir dir (P.run_exit_code "git" args))
+
+(** Try to cherry-pick a commit. Returns Ok () or Error message. *)
+let try_cherry_pick hash =
+  let exit_code = run_git_exit [ "cherry-pick"; "--no-commit"; hash ] in
+  if exit_code = 0 then Ok ()
+  else (
+    let _ = run_git_exit [ "cherry-pick"; "--abort" ] in
+    Error (Printf.sprintf "cherry-pick of %s failed (exit %d)" hash exit_code))
+
+(** Run dune build in melange dir. Returns Ok () or Error message. *)
+let try_build () =
+  let dir = melange_dir () in
+  let exit_code =
+    P.eval (P.chdir dir (P.run_exit_code "opam" [ "exec"; "--"; "dune"; "build" ]))
+  in
+  if exit_code = 0 then Ok ()
+  else Error (Printf.sprintf "dune build failed (exit %d)" exit_code)
+
+(** Get current HEAD hash. *)
+let head () = String.trim (run_git [ "rev-parse"; "HEAD" ])
+
+(** Reset to a given commit, discarding changes. *)
+let reset_hard hash =
+  let _ = run_git_exit [ "reset"; "--hard"; hash ] in
+  ()

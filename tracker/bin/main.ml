@@ -103,6 +103,11 @@ let verify_cmd =
   let doc = "Verify all merge-ready candidates, checking dependency ordering." in
   Cmd.v (Cmd.info "verify" ~doc) Term.(const Tracker_lib.Commands.verify $ const ())
 
+(* check *)
+let check_cmd =
+  let doc = "Cherry-pick merge-ready candidates into melange and run dune build to verify they apply cleanly." in
+  Cmd.v (Cmd.info "check" ~doc) Term.(const Tracker_lib.Commands.check $ const ())
+
 (* main *)
 let () =
   let doc = "Track upstream rescript commits as cherry-pick candidates for melange." in
@@ -123,6 +128,7 @@ let () =
         merge_cmd;
         report_cmd;
         verify_cmd;
+        check_cmd;
       ]
   in
   exit (Cmd.eval cmd)

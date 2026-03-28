@@ -135,6 +135,7 @@ let triage hash status_str reason =
               db.undecided @ [ { hash = full_hash; reason = reason_str } ];
           }
         | "candidate" ->
+          let subject = Git.subject full_hash in
           {
             db with
             candidates =
@@ -142,6 +143,7 @@ let triage hash status_str reason =
               @ [
                   {
                     hash = full_hash;
+                    subject;
                     stage = Planned;
                     depends_on = [];
                     notes = reason_str;
@@ -164,8 +166,9 @@ let plan hash notes =
         match sv with
         | VCandidate c -> { c with stage = Planned; notes }
         | VQueued | VUndecided _ | VDeferred _ ->
+          let subject = Git.subject full_hash in
           Types.
-            { hash = full_hash; stage = Planned; depends_on = []; notes }
+            { hash = full_hash; subject; stage = Planned; depends_on = []; notes }
         | _ ->
           failwith
             (Printf.sprintf "Cannot plan from status %s" (Db.status_name sv))
@@ -233,6 +236,82 @@ let merge hash melange_hash =
     | Some (_, sv) ->
       failwith
         (Printf.sprintf "Cannot merge from status %s" (Db.status_name sv)))
+
+(** check — verify merge-ready candidates can be cherry-picked and built *)
+let check () =
+  with_db (fun db ->
+    (* Collect candidates that are in_progress or pull_request *)
+    let merge_ready =
+      List.filter
+        (fun (c : Types.candidate) ->
+          match c.stage with
+          | Pull_request _ | In_progress -> true
+          | _ -> false)
+        db.candidates
+    in
+    if merge_ready = [] then (
+      Printf.printf "No candidates ready to check.\n";
+      exit 0);
+    (* Build a map from hash to candidate for dependency resolution *)
+    let all_candidates = db.candidates in
+    (* Topological sort: apply dependencies before dependents *)
+    let rec resolve_order ~visited ~ordered (c : Types.candidate) =
+      if List.mem c.hash visited then (visited, ordered)
+      else
+        let visited = c.hash :: visited in
+        let visited, ordered =
+          List.fold_left
+            (fun (visited, ordered) dep_hash ->
+              match
+                List.find_opt
+                  (fun (cand : Types.candidate) ->
+                    Db.hash_matches dep_hash cand.hash)
+                  all_candidates
+              with
+              | Some dep -> resolve_order ~visited ~ordered dep
+              | None -> (visited, ordered))
+            (visited, ordered) c.depends_on
+        in
+        (visited, ordered @ [ c ])
+    in
+    let _, ordered =
+      List.fold_left
+        (fun (visited, ordered) c -> resolve_order ~visited ~ordered c)
+        ([], []) merge_ready
+    in
+    Printf.printf "Checking %d candidates (with dependencies)...\n\n"
+      (List.length ordered);
+    let saved_head = Git.head () in
+    let passed = ref 0 in
+    let failed = ref 0 in
+    let check_one (c : Types.candidate) =
+      Printf.printf "  %s  %s\n" (short_hash c.hash) c.subject;
+      match Git.try_cherry_pick c.hash with
+      | Error msg ->
+        Printf.printf "    FAIL: %s\n" msg;
+        incr failed
+      | Ok () ->
+        incr passed;
+        Printf.printf "    cherry-pick: OK\n"
+    in
+    List.iter check_one ordered;
+    (* Try building after all cherry-picks applied *)
+    if !failed = 0 then (
+      Printf.printf "\nRunning dune build...\n";
+      match Git.try_build () with
+      | Ok () -> Printf.printf "Build: OK\n"
+      | Error msg ->
+        Printf.printf "Build: FAIL — %s\n" msg;
+        incr failed);
+    (* Reset to original HEAD *)
+    Git.reset_hard saved_head;
+    Printf.printf "\n---\n";
+    Printf.printf "Checked: %d candidates, %d passed, %d failed\n"
+      (List.length ordered) !passed !failed;
+    if !failed > 0 then (
+      Printf.eprintf "\nCheck FAILED.\n";
+      exit 1)
+    else Printf.printf "\nCheck passed.\n")
 
 (** report — show actionable candidates grouped by stage *)
 let report () =
